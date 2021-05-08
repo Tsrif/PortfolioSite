@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_site/animated_button.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:portfolio_site/custom_cursor.dart';
 
 import 'Globaltheme.dart';
 
@@ -65,62 +67,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: 100,
-                  color: GlobalTheme.appBarColor,
+                  color: GlobalTheme.primaryColor,
                   child: Column(
                     children: [
-                      Container(
-                          width: 200,
-                          height: 200,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: GlobalTheme.primaryBlue, // background
-                                onPrimary: Color(0xff7289da), // foreground
-                              ),
-                              onPressed: () {
-                                _scrollController.scrollTo(
-                                    index: 0,
-                                    duration: Duration(milliseconds: 700),
-                                    curve: Curves.easeInCirc);
-                              },
-                              child: Text('Home',
-                                  style: TextStyle(color: Colors.black)))),
-                      Container(
-                          width: 200,
-                          height: 200,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: GlobalTheme.primaryGreen, // background
-                                onPrimary: Color(0xff7289da), // foreground
-                              ),
-                              onPressed: () {
-                                _scrollController.scrollTo(
-                                    index: 1,
-                                    duration: Duration(milliseconds: 700),
-                                    curve: Curves.easeInCirc);
-                              },
-                              child: Text('About',
-                                  style: TextStyle(color: Colors.black)))),
-                      Container(
-                          width: 200,
-                          height: 200,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: GlobalTheme.primaryRed, // background
-                                onPrimary: Color(0xff7289da), // foreground
-                              ),
-                              onPressed: () {
-                                _scrollController.scrollTo(
-                                    index: 2,
-                                    duration: Duration(milliseconds: 700),
-                                    curve: Curves.easeInCirc);
-                              },
-                              child: Text('Projects',
-                                  style: TextStyle(color: Colors.black))))
+                      SizedBox(height: 20),
+                      Text('Ricky',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Rivera',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Divider(thickness: 3),
+                      _createNavButton(_scrollController,
+                          GlobalTheme.primaryBlue, 'Home', 0),
+                      _createNavButton(_scrollController,
+                          GlobalTheme.primaryGreen, 'About', 1),
+                      _createNavButton(_scrollController,
+                          GlobalTheme.primaryRed, 'Projects', 2)
                     ],
                   ),
                 )),
             Positioned.fill(
-              left: 200,
+              left: 96,
               child: Align(
                   alignment: Alignment.centerRight,
                   child: ScrollablePositionedList.builder(
@@ -128,24 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return [
-                        SizedBox(
-                            height: 1200.0,
-                            width: MediaQuery.of(context).size.width / 1.1,
-                            child: new Card(
-                                child: Text('Home Section'),
-                                color: GlobalTheme.appBarColor)),
-                        SizedBox(
-                            height: 1200.0,
-                            width: MediaQuery.of(context).size.width / 1.1,
-                            child: new Card(
-                                child: Text('About Section'),
-                                color: GlobalTheme.appBarColor)),
-                        SizedBox(
-                            height: 1200.0,
-                            width: MediaQuery.of(context).size.width / 1.1,
-                            child: new Card(
-                                child: Text('Projects Section'),
-                                color: GlobalTheme.appBarColor)),
+                        _createCard(context, 'Home Section'),
+                        _createCard(context, 'About Section'),
+                        _createCard(context, 'Projects Section'),
                       ][index];
                     },
                   )),
@@ -158,4 +109,44 @@ class _MyHomePageState extends State<MyHomePage> {
         // ),
         );
   }
+}
+
+_createCard(BuildContext context, String text) {
+  return SizedBox(
+      height: MediaQuery.of(context).size.width / 2.1,
+      width: MediaQuery.of(context).size.width / 1.1,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+            shape: RoundedRectangleBorder(
+              //side: BorderSide(color: Colors.transparent, width: 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(child: Text(text)),
+            color: GlobalTheme.appBarColor),
+      ));
+}
+
+_createNavButton(ItemScrollController _scrollController, Color color,
+    String text, int scrollIndex) {
+  // return AnimatedButton(
+  //   width: 120,
+  //   height: 40,
+  //   text: 'Carrot',
+  //   animationColor: ButtonColors.carrot,
+  // );
+  return CustomCursor(
+    cursorStyle: CustomCursor.text,
+    child: TextButton(
+      child: Text(text, 
+      // style: TextStyle(color: color)
+      ),
+      onPressed: () {
+        _scrollController.scrollTo(
+            index: scrollIndex,
+            duration: Duration(seconds: 1),
+            curve: Curves.bounceIn.flipped);
+      },
+    ),
+  );
 }
