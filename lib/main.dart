@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_site/animated_button.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:portfolio_site/custom_cursor.dart';
+import 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'Globaltheme.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+// Create enum that defines the animated properties
+enum AniProps { x, y }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -33,6 +37,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Scaffold(
+//         body: SafeArea(
+//           // put DevTools very high in the widget hierarchy
+//           child: AnimationDeveloperTools(
+//             child: Center(
+//               child: AnimatedButton(
+//                 child: Text('piss and shit bruv'),
+//                 onTap: () => print('and I oop'),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -52,14 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
         primary: true,
         backgroundColor: GlobalTheme.primaryColor,
-        appBar: AppBar(
-          title: const Text('Home'),
-          //leading: Image.asset('image/mehead.png'),
-          backgroundColor: GlobalTheme.appBarColor,
-        ),
         body: Stack(
           children: [
             Align(
@@ -72,16 +92,48 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       SizedBox(height: 20),
                       Text('Ricky',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
                       Text('Rivera',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30)),
                       Divider(thickness: 3),
-                      _createNavButton(_scrollController,
-                          GlobalTheme.primaryBlue, 'Home', 0),
-                      _createNavButton(_scrollController,
-                          GlobalTheme.primaryGreen, 'About', 1),
-                      _createNavButton(_scrollController,
-                          GlobalTheme.primaryRed, 'Projects', 2)
+                      AnimatedButton(
+                        child: Text('Home',
+                            style: TextStyle(fontSize: 28)),
+                        onTap: () {
+                          _scrollController.scrollTo(
+                              index: 0,
+                              duration: Duration(seconds: 1),
+                              curve: Curves.bounceIn.flipped);
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      AnimatedButton(
+                        child: Text('About',
+                            style: TextStyle(fontSize: 28)),
+                        onTap: () {
+                          _scrollController.scrollTo(
+                              index: 1,
+                              duration: Duration(seconds: 1),
+                              curve: Curves.bounceIn.flipped);
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      AnimatedButton(
+                        child: Text('Projects',
+                            style: TextStyle(fontSize: 25)),
+                        onTap: () {
+                          _scrollController.scrollTo(
+                              index: 2,
+                              duration: Duration(seconds: 1),
+                              curve: Curves.bounceIn.flipped);
+                        },
+                      ),
+                      // _createNavButton(_scrollController,
+                      //     GlobalTheme.primaryBlue, 'Home', 0),
+                      // _createNavButton(_scrollController,
+                      //     GlobalTheme.primaryGreen, 'About', 1),
+                      // _createNavButton(_scrollController,
+                      //     GlobalTheme.primaryRed, 'Projects', 2)
                     ],
                   ),
                 )),
@@ -102,12 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   )),
             ),
           ],
-        )
-        // bottomNavigationBar: ElevatedButton(
-        //   onPressed: () => Scrollable.ensureVisible(projectsKey.currentContext),
-        //   child: Text("Scroll to data"),
-        // ),
-        );
+        ));
   }
 }
 
@@ -129,24 +176,81 @@ _createCard(BuildContext context, String text) {
 
 _createNavButton(ItemScrollController _scrollController, Color color,
     String text, int scrollIndex) {
-  // return AnimatedButton(
-  //   width: 120,
-  //   height: 40,
-  //   text: 'Carrot',
-  //   animationColor: ButtonColors.carrot,
-  // );
   return CustomCursor(
     cursorStyle: CustomCursor.text,
-    child: TextButton(
-      child: Text(text, 
-      // style: TextStyle(color: color)
+    child: InkWell(
+      child: Text(
+        text,
+        // style: TextStyle(color: color)
       ),
-      onPressed: () {
+      onTap: () {
         _scrollController.scrollTo(
             index: scrollIndex,
             duration: Duration(seconds: 1),
             curve: Curves.bounceIn.flipped);
       },
+      onHover: (value) {
+        if (value == true) {
+          print('hover on');
+        } else {
+          print('no more hover');
+        }
+      },
     ),
   );
+}
+
+class AnimatedButton extends StatefulWidget {
+  final Widget child;
+  final onTap;
+
+  const AnimatedButton({Key key, this.child, this.onTap}) : super(key: key);
+  @override
+  _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
+}
+
+class _MyAnimatedWidgetState extends State<AnimatedButton> with AnimationMixin {
+  AnimationController colorController;
+  AnimationController xController;
+  AnimationController yController;
+
+  Animation<Color> color;
+  Animation<double> x;
+  Animation<double> y;
+
+  @override
+  void initState() {
+    xController = createController();
+    yController = createController();
+    color = Colors.red.tweenTo(Colors.blue).animatedBy(colorController);
+    x = 0.0.tweenTo(0).animatedBy(xController);
+    y = 0.0.tweenTo(-20.0).curved(Curves.ease).animatedBy(yController);
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: () => widget.onTap(),
+      onHover: (value) {
+        if (value == true) {
+          y = 0.0.tweenTo(-5.0).curved(Curves.ease).animatedBy(yController);
+          yController.play(duration: 200.milliseconds);
+        } else {
+          y = 0.0.tweenTo(-5.0).curved(Curves.ease).animatedBy(yController);
+          yController.playReverse(duration: 200.milliseconds);
+        }
+      },
+      child: Transform.translate(
+        // Get animated offset
+        offset: Offset(x.value, y.value),
+        child: widget.child,
+      ),
+    );
+  }
 }
