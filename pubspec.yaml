@@ -70,7 +70,5 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/Fonts/Roboto-Regular.ttf
-        - asset: assets/Fonts/Roboto-italic.ttf
-          style: italic
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
