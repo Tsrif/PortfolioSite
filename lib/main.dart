@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:splashscreen/splashscreen.dart';
-import 'package:portfolio_site/custom_cursor.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
+import 'splash.dart';
 
 import 'Globaltheme.dart';
 
@@ -22,16 +21,12 @@ class MyApp extends StatelessWidget {
       title: "Ricky's Portfolio",
       theme: GlobalTheme.darkTheme,
       home: Center(
-        child: SplashScreen(
-            seconds: 1,
+        child: Splash(
+            miliseconds: 700,
             navigateAfterSeconds: MyHomePage(title: 'Demo'),
-            // title: Text('Ricky Rivera',
-            //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0)),
             image: Image.asset('gif/glitchyhead.gif'),
             backgroundColor: Colors.black,
-            //styleTextUnderTheLoader:TextStyle(fontWeight: FontWeight.bold, fontSize: 100.0),
-            photoSize: 300.0,
-            useLoader: false),
+            photoSize: 300.0),
       ),
     );
   }
@@ -92,13 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       SizedBox(height: 20),
                       Text('Ricky',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 30)),
                       Text('Rivera',
-                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30)),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 30)),
                       Divider(thickness: 3),
                       AnimatedButton(
-                        child: Text('Home',
-                            style: TextStyle(fontSize: 28)),
+                        child: Text('Home', style: TextStyle(fontSize: 28)),
                         onTap: () {
                           _scrollController.scrollTo(
                               index: 0,
@@ -108,8 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       SizedBox(height: 20),
                       AnimatedButton(
-                        child: Text('About',
-                            style: TextStyle(fontSize: 28)),
+                        child: Text('About', style: TextStyle(fontSize: 28)),
                         onTap: () {
                           _scrollController.scrollTo(
                               index: 1,
@@ -119,8 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       SizedBox(height: 20),
                       AnimatedButton(
-                        child: Text('Projects',
-                            style: TextStyle(fontSize: 25)),
+                        child: Text('Projects', style: TextStyle(fontSize: 25)),
                         onTap: () {
                           _scrollController.scrollTo(
                               index: 2,
@@ -160,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 _createCard(BuildContext context, String text) {
   return SizedBox(
-      height: MediaQuery.of(context).size.width / 2.1,
+      height: MediaQuery.of(context).size.width / 2.0,
       width: MediaQuery.of(context).size.width / 1.1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -172,32 +166,6 @@ _createCard(BuildContext context, String text) {
             child: Center(child: Text(text)),
             color: GlobalTheme.appBarColor),
       ));
-}
-
-_createNavButton(ItemScrollController _scrollController, Color color,
-    String text, int scrollIndex) {
-  return CustomCursor(
-    cursorStyle: CustomCursor.text,
-    child: InkWell(
-      child: Text(
-        text,
-        // style: TextStyle(color: color)
-      ),
-      onTap: () {
-        _scrollController.scrollTo(
-            index: scrollIndex,
-            duration: Duration(seconds: 1),
-            curve: Curves.bounceIn.flipped);
-      },
-      onHover: (value) {
-        if (value == true) {
-          print('hover on');
-        } else {
-          print('no more hover');
-        }
-      },
-    ),
-  );
 }
 
 class AnimatedButton extends StatefulWidget {
