@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Map<int, Color> color = {
   50: Color.fromRGBO(136, 14, 79, .1),
@@ -52,31 +53,9 @@ class GlobalTheme {
       //accentColor: Color(0xFF0F5B55),
       //buttonColor: Color(0xff2AB77E),
 
-      // Define the default font family.
-      fontFamily: 'RobotoCondensed',
+      textTheme: GoogleFonts.cabinCondensedTextTheme(), 
 
-      // Define the default TextTheme. Use this to specify the default
-      // text styling for headlines, titles, bodies of text, and more.
-      textTheme: TextTheme(
-        headline5: TextStyle(
-          fontSize: 72.0,
-          fontWeight: FontWeight.bold,
-        ),
-        headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-        bodyText2: TextStyle(
-          fontSize: 14.0,
-          fontFamily: 'RobotoCondensed',
-        ),
-        bodyText1: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontStyle: FontStyle.normal,
-            fontSize: 20),
-        headline4: TextStyle(
-            color: Color(0xff000000).withOpacity(0.34),
-            fontWeight: FontWeight.w400,
-            fontStyle: FontStyle.normal,
-            fontSize: 40),
-      ));
+      );
 
   static Color primaryColor = Color(0XFF171618);
   static Color lightGray = Color(0XFF4C4C51);

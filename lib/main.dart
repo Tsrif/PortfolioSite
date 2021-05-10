@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
@@ -41,10 +42,7 @@ class MyApp extends StatelessWidget {
 //           // put DevTools very high in the widget hierarchy
 //           child: AnimationDeveloperTools(
 //             child: Center(
-//               child: AnimatedButton(
-//                 child: Text('piss and shit bruv'),
-//                 onTap: () => print('and I oop'),
-//               ),
+//               child: MyAnimatedWidget(),
 //             ),
 //           ),
 //         ),
@@ -88,13 +86,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(height: 20),
                       Text('Ricky',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30)),
+                              fontSize: 22, color: GlobalTheme.primaryGreen)),
                       Text('Rivera',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30)),
+                              fontSize: 22, color: GlobalTheme.primaryGreen)),
                       Divider(thickness: 3),
                       AnimatedButton(
-                        child: Text('Home', style: TextStyle(fontSize: 28)),
+                        child: Text('Home',
+                            textAlign: TextAlign.right,
+                            style:
+                                TextStyle(fontSize: 28, color: Colors.white)),
                         onTap: () {
                           _scrollController.scrollTo(
                               index: 0,
@@ -102,9 +103,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               curve: Curves.bounceIn.flipped);
                         },
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       AnimatedButton(
-                        child: Text('About', style: TextStyle(fontSize: 28)),
+                        child: Text('About',
+                            textAlign: TextAlign.right,
+                            style:
+                                TextStyle(fontSize: 28, color: Colors.white)),
                         onTap: () {
                           _scrollController.scrollTo(
                               index: 1,
@@ -112,9 +116,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               curve: Curves.bounceIn.flipped);
                         },
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       AnimatedButton(
-                        child: Text('Projects', style: TextStyle(fontSize: 25)),
+                        child: Text('Projects',
+                            textAlign: TextAlign.right,
+                            style:
+                                TextStyle(fontSize: 25, color: Colors.white)),
                         onTap: () {
                           _scrollController.scrollTo(
                               index: 2,
@@ -122,12 +129,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               curve: Curves.bounceIn.flipped);
                         },
                       ),
-                      // _createNavButton(_scrollController,
-                      //     GlobalTheme.primaryBlue, 'Home', 0),
-                      // _createNavButton(_scrollController,
-                      //     GlobalTheme.primaryGreen, 'About', 1),
-                      // _createNavButton(_scrollController,
-                      //     GlobalTheme.primaryRed, 'Projects', 2)
                     ],
                   ),
                 )),
@@ -174,10 +175,10 @@ class AnimatedButton extends StatefulWidget {
 
   const AnimatedButton({Key key, this.child, this.onTap}) : super(key: key);
   @override
-  _MyAnimatedWidgetState createState() => _MyAnimatedWidgetState();
+  _AnimatedButtonState createState() => _AnimatedButtonState();
 }
 
-class _MyAnimatedWidgetState extends State<AnimatedButton> with AnimationMixin {
+class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
   AnimationController colorController;
   AnimationController xController;
   AnimationController yController;
@@ -190,7 +191,10 @@ class _MyAnimatedWidgetState extends State<AnimatedButton> with AnimationMixin {
   void initState() {
     xController = createController();
     yController = createController();
-    color = Colors.red.tweenTo(Colors.blue).animatedBy(colorController);
+    colorController = createController();
+    color = Colors.transparent
+        .tweenTo(GlobalTheme.primaryBlue)
+        .animatedBy(colorController);
     x = 0.0.tweenTo(0).animatedBy(xController);
     y = 0.0.tweenTo(-20.0).curved(Curves.ease).animatedBy(yController);
 
@@ -209,15 +213,20 @@ class _MyAnimatedWidgetState extends State<AnimatedButton> with AnimationMixin {
         if (value == true) {
           y = 0.0.tweenTo(-5.0).curved(Curves.ease).animatedBy(yController);
           yController.play(duration: 200.milliseconds);
+          colorController.play(duration: 100.milliseconds);
         } else {
           y = 0.0.tweenTo(-5.0).curved(Curves.ease).animatedBy(yController);
           yController.playReverse(duration: 200.milliseconds);
+          colorController.playReverse(duration: 100.milliseconds);
         }
       },
       child: Transform.translate(
         // Get animated offset
         offset: Offset(x.value, y.value),
-        child: widget.child,
+        child: Container(
+          child: widget.child,
+          color: color.value,
+        ),
       ),
     );
   }
