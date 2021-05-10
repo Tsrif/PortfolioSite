@@ -1,8 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
+import 'corner_decoration.dart';
 import 'splash.dart';
 
 import 'Globaltheme.dart';
@@ -79,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.centerLeft,
                 child: Container(
                   height: MediaQuery.of(context).size.height,
-                  width: 100,
+                  width: 115,
                   color: GlobalTheme.primaryColor,
                   child: Column(
                     children: [
@@ -141,9 +143,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return [
-                        _createCard(context, 'Home Section'),
-                        _createCard(context, 'About Section'),
-                        _createCard(context, 'Projects Section'),
+                        _createCard(
+                            context,
+                            Text('Home Section',
+                                style: TextStyle(color: Colors.white))),
+                        _createCard(
+                            context,
+                            Text('About Section',
+                                style: TextStyle(color: Colors.white))),
+                        _createCard(
+                            context,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                sectionContentBox(context),
+                                sectionContentBox(context)
+                              ],
+                            )),
                       ][index];
                     },
                   )),
@@ -153,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-_createCard(BuildContext context, String text) {
+_createCard(BuildContext context, Widget content) {
   return SizedBox(
       height: MediaQuery.of(context).size.width / 2.0,
       width: MediaQuery.of(context).size.width / 1.1,
@@ -164,7 +181,7 @@ _createCard(BuildContext context, String text) {
               //side: BorderSide(color: Colors.transparent, width: 1),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Center(child: Text(text)),
+            child: Center(child: content),
             color: GlobalTheme.appBarColor),
       ));
 }
@@ -224,10 +241,79 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
         // Get animated offset
         offset: Offset(x.value, y.value),
         child: Container(
+          decoration: CornerDecoration(
+            strokeWidth: 4,
+            strokeColor: color.value,
+            insets: EdgeInsets.all(16),
+            cornerSide: CornerSide.all(16, 48),
+            fillTop: 0.0,
+            fillBottom: 0.0,
+          ),
           child: widget.child,
-          color: color.value,
+          //color: color.value,
         ),
       ),
     );
   }
+}
+
+sectionContentBox(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 15),
+    child: Container(
+      width: MediaQuery.of(context).size.width / 5,
+      height: 400,
+      decoration: ConcaveDecoration(
+          depression: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          colors: [Color(0x3e000000), Color(0XFF4D4A50)]),
+      child: Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 10.0),
+          Center(
+            child: Text(
+              'Project Name',
+              style: TextStyle(fontSize: 32, color: Color(0XFFE6E3E9)),
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width / 6,
+              child: Text(
+                "I don't know. Maybe put like the project description here?",
+                style: TextStyle(fontSize: 15, color: Color(0XFFE6E3E9)),
+              ),
+            ),
+          ),
+          SizedBox(height: 50),
+          CarouselSlider(
+              items: [
+                Image.network('https://picsum.photos/250?image=9'),
+                Image.network('https://picsum.photos/250?image=10'),
+                Image.network('https://picsum.photos/250?image=11'),
+                Image.network('https://picsum.photos/250?image=12')
+              ],
+              options: CarouselOptions(
+                height: 200,
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.8,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: false,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                //onPageChanged: callbackFunction,
+                scrollDirection: Axis.horizontal,
+              ))
+        ],
+      ),
+    ),
+  );
 }
