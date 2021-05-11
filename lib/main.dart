@@ -1,9 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio_site/animated_button.dart';
+import 'package:portfolio_site/project_widget.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
 import 'corner_decoration.dart';
 import 'splash.dart';
 
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       home: Center(
         child: Splash(
             miliseconds: 700,
-            navigateAfterSeconds: MyHomePage(title: 'Demo'),
+            navigateAfterSeconds: PortfolioSite(title: 'Demo'),
             image: Image.asset('gif/glitchyhead.gif'),
             backgroundColor: Colors.black,
             photoSize: 300.0),
@@ -53,15 +52,15 @@ class MyApp extends StatelessWidget {
 //   }
 // }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class PortfolioSite extends StatefulWidget {
+  PortfolioSite({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _PortfolioSiteState createState() => _PortfolioSiteState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _PortfolioSiteState extends State<PortfolioSite> {
   ItemScrollController _scrollController = ItemScrollController();
 
   @override
@@ -143,23 +142,37 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return [
-                        _createCard(
-                            context,
-                            Text('Home Section',
-                                style: TextStyle(color: Colors.white))),
-                        _createCard(
+                        _createSection(context, _createHome(),
+                            customHeight: 2.0),
+                        _createSection(
                             context,
                             Text('About Section',
                                 style: TextStyle(color: Colors.white))),
-                        _createCard(
+                        _createSection(
                             context,
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                sectionContentBox(context),
-                                sectionContentBox(context)
-                              ],
+                            //Yeah yeah yeah, I could technically do this with a grid view, but then everything isn't sized correctly
+                            //And yeah I could use the staggered view package, but this is honestly easier to just do manually
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  ProjectWidget(
+                                      randomPictureHeight: 500,
+                                      randomPictureWidth: 500),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  ProjectWidget(
+                                      randomPictureHeight: 400,
+                                      randomPictureWidth: 600),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  ProjectWidget(
+                                      randomPictureHeight: 800,
+                                      randomPictureWidth: 600)
+                                ],
+                              ),
                             )),
                       ][index];
                     },
@@ -170,91 +183,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-_createCard(BuildContext context, Widget content) {
+_createSection(BuildContext context, Widget content,
+    {double customHeight = 2.0}) {
   return SizedBox(
-      height: MediaQuery.of(context).size.width / 2.0,
+      height: MediaQuery.of(context).size.width / customHeight,
       width: MediaQuery.of(context).size.width / 1.1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-            shape: RoundedRectangleBorder(
-              //side: BorderSide(color: Colors.transparent, width: 1),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(child: content),
-            color: GlobalTheme.appBarColor),
-      ));
-}
-
-class AnimatedButton extends StatefulWidget {
-  final Widget child;
-  final onTap;
-
-  const AnimatedButton({Key key, this.child, this.onTap}) : super(key: key);
-  @override
-  _AnimatedButtonState createState() => _AnimatedButtonState();
-}
-
-class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
-  AnimationController colorController;
-  AnimationController xController;
-  AnimationController yController;
-
-  Animation<Color> color;
-  Animation<double> x;
-  Animation<double> y;
-
-  @override
-  void initState() {
-    xController = createController();
-    yController = createController();
-    colorController = createController();
-    color = Colors.transparent
-        .tweenTo(GlobalTheme.primaryBlue)
-        .animatedBy(colorController);
-    x = 0.0.tweenTo(0).animatedBy(xController);
-    y = 0.0.tweenTo(-20.0).curved(Curves.ease).animatedBy(yController);
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      hoverColor: Colors.transparent,
-      splashColor: Colors.transparent,
-      focusColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      onTap: () => widget.onTap(),
-      onHover: (value) {
-        if (value == true) {
-          y = 0.0.tweenTo(-5.0).curved(Curves.ease).animatedBy(yController);
-          yController.play(duration: 200.milliseconds);
-          colorController.play(duration: 100.milliseconds);
-        } else {
-          y = 0.0.tweenTo(-5.0).curved(Curves.ease).animatedBy(yController);
-          yController.playReverse(duration: 200.milliseconds);
-          colorController.playReverse(duration: 100.milliseconds);
-        }
-      },
-      child: Transform.translate(
-        // Get animated offset
-        offset: Offset(x.value, y.value),
-        child: Container(
-          decoration: CornerDecoration(
-            strokeWidth: 4,
-            strokeColor: color.value,
-            insets: EdgeInsets.all(16),
-            cornerSide: CornerSide.all(16, 48),
-            fillTop: 0.0,
-            fillBottom: 0.0,
+          shape: RoundedRectangleBorder(
+            //side: BorderSide(color: Colors.transparent, width: 1),
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: widget.child,
-          //color: color.value,
+          child: Center(child: content),
+          color: GlobalTheme.appBarColor,
         ),
-      ),
-    );
-  }
+      ));
 }
 
 sectionContentBox(BuildContext context) {
@@ -290,30 +234,56 @@ sectionContentBox(BuildContext context) {
             ),
           ),
           SizedBox(height: 50),
-          CarouselSlider(
-              items: [
-                Image.network('https://picsum.photos/250?image=9'),
-                Image.network('https://picsum.photos/250?image=10'),
-                Image.network('https://picsum.photos/250?image=11'),
-                Image.network('https://picsum.photos/250?image=12')
-              ],
-              options: CarouselOptions(
-                height: 200,
-                aspectRatio: 16 / 9,
-                viewportFraction: 0.8,
-                initialPage: 0,
-                enableInfiniteScroll: true,
-                reverse: false,
-                autoPlay: false,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: true,
-                //onPageChanged: callbackFunction,
-                scrollDirection: Axis.horizontal,
-              ))
+          // CarouselSlider(
+          //     items: [
+          //       Image.network('https://picsum.photos/250?image=9'),
+          //       Image.network('https://picsum.photos/250?image=10'),
+          //       Image.network('https://picsum.photos/250?image=11'),
+          //       Image.network('https://picsum.photos/250?image=12')
+          //     ],
+          //     options: CarouselOptions(
+          //       height: 200,
+          //       aspectRatio: 16 / 9,
+          //       viewportFraction: 0.8,
+          //       initialPage: 0,
+          //       enableInfiniteScroll: true,
+          //       reverse: false,
+          //       autoPlay: false,
+          //       autoPlayInterval: Duration(seconds: 3),
+          //       autoPlayAnimationDuration: Duration(milliseconds: 800),
+          //       autoPlayCurve: Curves.fastOutSlowIn,
+          //       enlargeCenterPage: true,
+          //       //onPageChanged: callbackFunction,
+          //       scrollDirection: Axis.horizontal,
+          //     ))
         ],
       ),
     ),
   );
+}
+
+_createHome() {
+  TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
+  TextStyle bodyStyle = TextStyle(color: Colors.white, fontSize: 22, fontStyle: FontStyle.italic);
+  TextStyle barStyle =
+      TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold);
+  return (Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text('Hi,', style: headerStyle),
+      Text("I'm Ricky", style: headerStyle),
+      SizedBox(height: 5),
+      Padding(
+        padding: const EdgeInsets.only(right: 40),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("｜", style: barStyle),
+            Text("A programmer,  I guess", style: bodyStyle)
+          ],
+        ),
+      ),
+    ],
+  ));
 }
