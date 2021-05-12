@@ -29,7 +29,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with AnimationMixin {
     yController = createController();
     colorController = createController();
     color = Colors.transparent
-        .tweenTo(GlobalTheme.primaryBlue)
+        .tweenTo(GlobalTheme.primaryRed)
         .animatedBy(colorController);
     x = 0.0.tweenTo(0).animatedBy(xController);
     y = 0.0.tweenTo(-20.0).curved(Curves.ease).animatedBy(yController);

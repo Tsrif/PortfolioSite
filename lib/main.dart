@@ -12,11 +12,7 @@ void main() {
   runApp(MyApp());
 }
 
-// Create enum that defines the animated properties
-enum AniProps { x, y }
-
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -84,52 +80,64 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                   color: GlobalTheme.primaryColor,
                   child: Column(
                     children: [
-                      SizedBox(height: 20),
-                      Text('Ricky',
-                          style: TextStyle(
-                              fontSize: 22, color: GlobalTheme.primaryGreen)),
-                      Text('Rivera',
-                          style: TextStyle(
-                              fontSize: 22, color: GlobalTheme.primaryGreen)),
-                      Divider(thickness: 3),
-                      AnimatedButton(
-                        child: Text('Home',
-                            textAlign: TextAlign.right,
-                            style:
-                                TextStyle(fontSize: 28, color: Colors.white)),
-                        onTap: () {
-                          _scrollController.scrollTo(
-                              index: 0,
-                              duration: Duration(seconds: 1),
-                              curve: Curves.bounceIn.flipped);
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      AnimatedButton(
-                        child: Text('About',
-                            textAlign: TextAlign.right,
-                            style:
-                                TextStyle(fontSize: 28, color: Colors.white)),
-                        onTap: () {
-                          _scrollController.scrollTo(
-                              index: 1,
-                              duration: Duration(seconds: 1),
-                              curve: Curves.bounceIn.flipped);
-                        },
-                      ),
-                      SizedBox(height: 10),
-                      AnimatedButton(
-                        child: Text('Projects',
-                            textAlign: TextAlign.right,
-                            style:
-                                TextStyle(fontSize: 25, color: Colors.white)),
-                        onTap: () {
-                          _scrollController.scrollTo(
-                              index: 2,
-                              duration: Duration(seconds: 1),
-                              curve: Curves.bounceIn.flipped);
-                        },
-                      ),
+                      Container(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).size.height / 4),
+                          child: Column(children: [
+                            SizedBox(height: 20),
+                            Text('Ricky',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    color: GlobalTheme.primaryBlue)),
+                            Text('Rivera',
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    color: GlobalTheme.primaryBlue)),
+                            SizedBox(width: 70, child: Divider(thickness: 3)),
+                          ])),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedButton(
+                            child: Text('Home',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    fontSize: 28, color: Colors.white)),
+                            onTap: () {
+                              _scrollController.scrollTo(
+                                  index: 0,
+                                  duration: Duration(milliseconds: 1700),
+                                  curve: Curves.bounceIn.flipped);
+                            },
+                          ),
+                          SizedBox(height: 10),
+                          AnimatedButton(
+                            child: Text('About',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    fontSize: 28, color: Colors.white)),
+                            onTap: () {
+                              _scrollController.scrollTo(
+                                  index: 1,
+                                  duration: Duration(milliseconds: 1700),
+                                  curve: Curves.bounceIn.flipped);
+                            },
+                          ),
+                          SizedBox(height: 10),
+                          AnimatedButton(
+                            child: Text('Projects',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    fontSize: 25, color: Colors.white)),
+                            onTap: () {
+                              _scrollController.scrollTo(
+                                  index: 2,
+                                  duration: Duration(milliseconds: 1700),
+                                  curve: Curves.bounceIn.flipped);
+                            },
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 )),
@@ -264,7 +272,8 @@ sectionContentBox(BuildContext context) {
 
 _createHome() {
   TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
-  TextStyle bodyStyle = TextStyle(color: Colors.white, fontSize: 22, fontStyle: FontStyle.italic);
+  TextStyle bodyStyle =
+      TextStyle(color: Colors.white, fontSize: 22, fontStyle: FontStyle.italic);
   TextStyle barStyle =
       TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold);
   return (Column(
