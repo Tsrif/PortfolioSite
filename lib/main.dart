@@ -88,11 +88,11 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                             Text('Ricky',
                                 style: TextStyle(
                                     fontSize: 22,
-                                    color: GlobalTheme.primaryBlue)),
+                                    color: GlobalTheme.primaryPurple)),
                             Text('Rivera',
                                 style: TextStyle(
                                     fontSize: 22,
-                                    color: GlobalTheme.primaryBlue)),
+                                    color: GlobalTheme.mutedWhite)),
                             SizedBox(width: 70, child: Divider(thickness: 3)),
                           ])),
                       Column(
@@ -102,7 +102,8 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                             child: Text('Home',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                    fontSize: 28, color: Colors.white)),
+                                    fontSize: 28,
+                                    color: GlobalTheme.mutedWhite)),
                             onTap: () {
                               _scrollController.scrollTo(
                                   index: 0,
@@ -115,7 +116,8 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                             child: Text('About',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                    fontSize: 28, color: Colors.white)),
+                                    fontSize: 28,
+                                    color: GlobalTheme.mutedWhite)),
                             onTap: () {
                               _scrollController.scrollTo(
                                   index: 1,
@@ -128,7 +130,8 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                             child: Text('Projects',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                    fontSize: 25, color: Colors.white)),
+                                    fontSize: 25,
+                                    color: GlobalTheme.mutedWhite)),
                             onTap: () {
                               _scrollController.scrollTo(
                                   index: 2,
@@ -155,7 +158,8 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                         _createSection(
                             context,
                             Text('About Section',
-                                style: TextStyle(color: Colors.white))),
+                                style:
+                                    TextStyle(color: GlobalTheme.mutedWhite))),
                         _createSection(
                             context,
                             //Yeah yeah yeah, I could technically do this with a grid view, but then everything isn't sized correctly
@@ -198,13 +202,17 @@ _createSection(BuildContext context, Widget content,
       width: MediaQuery.of(context).size.width / 1.1,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            //side: BorderSide(color: Colors.transparent, width: 1),
-            borderRadius: BorderRadius.circular(10),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(9.0),
+            gradient: LinearGradient(
+              begin: Alignment(-1.0, 0.0),
+              end: Alignment(1.0, 0.0),
+              colors: GlobalTheme.darkGradient,
+              stops: [0.0, 1.0],
+            ),
           ),
           child: Center(child: content),
-          color: GlobalTheme.appBarColor,
         ),
       ));
 }
@@ -272,10 +280,10 @@ sectionContentBox(BuildContext context) {
 
 _createHome() {
   TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
-  TextStyle bodyStyle =
-      TextStyle(color: Colors.white, fontSize: 22, fontStyle: FontStyle.italic);
-  TextStyle barStyle =
-      TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold);
+  TextStyle bodyStyle = TextStyle(
+      color: GlobalTheme.mutedWhite, fontSize: 22, fontStyle: FontStyle.italic);
+  TextStyle barStyle = TextStyle(
+      color: GlobalTheme.mutedWhite, fontSize: 32, fontWeight: FontWeight.bold);
   return (Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [

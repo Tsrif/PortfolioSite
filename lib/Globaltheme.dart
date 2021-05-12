@@ -40,22 +40,21 @@ class GlobalTheme {
       ));
 
   static ThemeData darkTheme = new ThemeData(
-      // Define the default brightness and colors.
-      brightness: Brightness.dark,
-      primarySwatch: colorCustom,
-      primaryColor: Color(0XFF32333D),
-      //Think of this as the secondary color - 0XFF3F404A
-      primaryColorDark: Color(0XFF171618),
-      //primaryColor: Color(0xff303841),
-      //primaryColor: Color(0xff26282b),
-      //accentColor: Color(0xff7B7EFF),
-      //buttonColor: Color(0xffeb4d55),
-      //accentColor: Color(0xFF0F5B55),
-      //buttonColor: Color(0xff2AB77E),
+    // Define the default brightness and colors.
+    brightness: Brightness.dark,
+    primarySwatch: colorCustom,
+    primaryColor: Color(0XFF32333D),
+    //Think of this as the secondary color - 0XFF3F404A
+    primaryColorDark: Color(0XFF171618),
+    //primaryColor: Color(0xff303841),
+    //primaryColor: Color(0xff26282b),
+    //accentColor: Color(0xff7B7EFF),
+    //buttonColor: Color(0xffeb4d55),
+    //accentColor: Color(0xFF0F5B55),
+    //buttonColor: Color(0xff2AB77E),
 
-      textTheme: GoogleFonts.cabinCondensedTextTheme(), 
-
-      );
+    textTheme: GoogleFonts.cabinCondensedTextTheme(),
+  );
 
   static Color primaryColor = Color(0XFF171618);
   static Color lightGray = Color(0XFF4C4C51);
@@ -64,6 +63,9 @@ class GlobalTheme {
   static Color primaryGreen = Color(0XFF5BD9B5);
   static Color primaryYellow = Color(0XFFF2BB16);
   static Color primaryRed = Color(0XFFF25749);
+  static Color primaryPurple = Color(0XFF7C32CA);
+  static Color mutedWhite = Color(0XFFB6B6CA);
+  static List<Color> darkGradient = [Color(0xFF2E2F3C), Color(0xFF38384A)];
   static List<List<Color>> gradients = [
     [const Color(0xffB15DFF), const Color(0xff72DEFF)],
     [const Color(0xff36d6aa), const Color(0xff2ec9f2)],
