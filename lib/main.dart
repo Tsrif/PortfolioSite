@@ -1,7 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_site/animated_button.dart';
-import 'package:portfolio_site/project_widget.dart';
+import 'package:portfolio_site/project_page.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'corner_decoration.dart';
 import 'splash.dart';
@@ -29,24 +29,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: SafeArea(
-//           // put DevTools very high in the widget hierarchy
-//           child: AnimationDeveloperTools(
-//             child: Center(
-//               child: MyAnimatedWidget(),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class PortfolioSite extends StatefulWidget {
   PortfolioSite({Key key, this.title}) : super(key: key);
@@ -85,11 +67,11 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                               bottom: MediaQuery.of(context).size.height / 4),
                           child: Column(children: [
                             SizedBox(height: 20),
-                            Text('Ricky',
+                            AutoSizeText('Ricky',
                                 style: TextStyle(
                                     fontSize: 22,
                                     color: GlobalTheme.primaryPurple)),
-                            Text('Rivera',
+                            AutoSizeText('Rivera',
                                 style: TextStyle(
                                     fontSize: 22,
                                     color: GlobalTheme.mutedWhite)),
@@ -99,7 +81,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AnimatedButton(
-                            child: Text('Home',
+                            child: AutoSizeText('Home',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                     fontSize: 28,
@@ -113,7 +95,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                           ),
                           SizedBox(height: 10),
                           AnimatedButton(
-                            child: Text('About',
+                            child: AutoSizeText('About',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                     fontSize: 28,
@@ -127,7 +109,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                           ),
                           SizedBox(height: 10),
                           AnimatedButton(
-                            child: Text('Projects',
+                            child: AutoSizeText('Projects',
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                     fontSize: 25,
@@ -153,39 +135,13 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return [
-                        _createSection(context, _createHome(),
+                        _createSection(context, _createHome(context),
                             customHeight: 2.0),
                         _createSection(
-                            context,
-                            Text('About Section',
-                                style:
-                                    TextStyle(color: GlobalTheme.mutedWhite))),
-                        _createSection(
-                            context,
-                            //Yeah yeah yeah, I could technically do this with a grid view, but then everything isn't sized correctly
-                            //And yeah I could use the staggered view package, but this is honestly easier to just do manually
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  ProjectWidget(
-                                      randomPictureHeight: 500,
-                                      randomPictureWidth: 500),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  ProjectWidget(
-                                      randomPictureHeight: 400,
-                                      randomPictureWidth: 600),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  ProjectWidget(
-                                      randomPictureHeight: 800,
-                                      randomPictureWidth: 600)
-                                ],
-                              ),
-                            )),
+                          context,
+                          _createAbout(context),
+                        ),
+                        _createSection(context, ProjectPage()),
                       ][index];
                     },
                   )),
@@ -234,7 +190,7 @@ sectionContentBox(BuildContext context) {
         children: [
           SizedBox(height: 10.0),
           Center(
-            child: Text(
+            child: AutoSizeText(
               'Project Name',
               style: TextStyle(fontSize: 32, color: Color(0XFFE6E3E9)),
             ),
@@ -243,7 +199,7 @@ sectionContentBox(BuildContext context) {
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width / 6,
-              child: Text(
+              child: AutoSizeText(
                 "I don't know. Maybe put like the project description here?",
                 style: TextStyle(fontSize: 15, color: Color(0XFFE6E3E9)),
               ),
@@ -278,29 +234,68 @@ sectionContentBox(BuildContext context) {
   );
 }
 
-_createHome() {
+_createHome(BuildContext context) {
   TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite, fontSize: 22, fontStyle: FontStyle.italic);
   TextStyle barStyle = TextStyle(
       color: GlobalTheme.mutedWhite, fontSize: 32, fontWeight: FontWeight.bold);
-  return (Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text('Hi,', style: headerStyle),
-      Text("I'm Ricky", style: headerStyle),
-      SizedBox(height: 5),
-      Padding(
-        padding: const EdgeInsets.only(right: 40),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("｜", style: barStyle),
-            Text("A programmer,  I guess", style: bodyStyle)
-          ],
+  return Container(
+    width: MediaQuery.of(context).size.width / 2,
+    height: MediaQuery.of(context).size.width / 2,
+    child: (Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AutoSizeText('Hi,', style: headerStyle),
+        AutoSizeText("I'm Ricky", style: headerStyle),
+        SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.only(right: 40),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AutoSizeText("｜", style: barStyle),
+              AutoSizeText("A programmer,  I guess", style: bodyStyle)
+            ],
+          ),
         ),
-      ),
-    ],
-  ));
+      ],
+    )),
+  );
+}
+
+_createAbout(BuildContext context) {
+  TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
+  TextStyle bodyStyle = TextStyle(
+      color: GlobalTheme.mutedWhite, fontSize: 32, fontStyle: FontStyle.italic);
+
+  return Container(
+    width: MediaQuery.of(context).size.width / 2,
+    height: MediaQuery.of(context).size.width / 2,
+    child: (Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        AutoSizeText.rich(TextSpan(text: 'About Me', style: headerStyle),
+            minFontSize: 0, stepGranularity: 0.1, wrapWords: true),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              child: Divider(thickness: 3)),
+        ),
+        Expanded(
+          child: AutoSizeText.rich(
+              TextSpan(
+                  text:
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                  style: bodyStyle),
+              minFontSize: 0,
+              stepGranularity: 0.1,
+              wrapWords: true),
+        ),
+      ],
+    )),
+  );
 }

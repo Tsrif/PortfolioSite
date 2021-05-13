@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
+import 'dart:html' as html;
 
 class ProjectWidget extends StatefulWidget {
   final int randomPictureWidth;
@@ -93,7 +95,7 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                 children: [
                   //First up is the picture
                   Image.network(
-                      "https://picsum.photos/${widget.randomPictureHeight}/${widget.randomPictureWidth}"),
+                      "https://picsum.photos/${widget.randomPictureWidth}/${widget.randomPictureHeight}"),
                   Positioned(
                     top: 0,
                     bottom: 0,
@@ -107,12 +109,17 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                           Positioned(
                             left: 20,
                             top: 10,
-                            child: Text('Name of Project',
-                                style: TextStyle(
-                                    color: showDescription == true
-                                        ? Colors.white.withOpacity(0.9)
-                                        : Colors.white.withOpacity(0.7),
-                                    fontSize: 55)),
+                            child: AutoSizeText.rich(
+                                TextSpan(
+                                    text: 'Name of Project',
+                                    style: TextStyle(
+                                        color: showDescription == true
+                                            ? Colors.white.withOpacity(0.9)
+                                            : Colors.white.withOpacity(0.7),
+                                        fontSize: 55)),
+                                minFontSize: 0,
+                                stepGranularity: 0.1,
+                                wrapWords: true),
                           ),
                           //All of this is displayed when we hover
                           Visibility(
@@ -121,7 +128,8 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                               Positioned(
                                 left: 25,
                                 top: 100,
-                                child: Text('Description of the project',
+                                child: AutoSizeText(
+                                    'Description of the project',
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 22)),
                               ),
@@ -130,7 +138,10 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                                 left: 0,
                                 right: 0,
                                 child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      html.window.open(
+                                          'https://www.google.com/', 'new tab');
+                                    },
                                     onHover: (value) {
                                       if (value == true) {
                                         setState(() {
@@ -155,7 +166,7 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                                       child: Center(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text('Link',
+                                          child: AutoSizeText('Link',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 22)),
