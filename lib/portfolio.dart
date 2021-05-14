@@ -48,8 +48,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                     itemCount: 3,
                     itemBuilder: (context, index) {
                       return [
-                        _createSection(context, _createHome(context),
-                            customHeight: 2.0),
+                        _createSection(context, _createHome(context)),
                         _createSection(
                           context,
                           _createAbout(context),
@@ -126,30 +125,81 @@ sectionContentBox(BuildContext context) {
 }
 
 _createHome(BuildContext context) {
-  TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
-  TextStyle bodyStyle = TextStyle(
-      color: GlobalTheme.mutedWhite, fontSize: 22, fontStyle: FontStyle.italic);
-  TextStyle barStyle = TextStyle(
-      color: GlobalTheme.mutedWhite, fontSize: 32, fontWeight: FontWeight.bold);
-  return Container(
+  TextStyle headerStyle = TextStyle(color: Colors.white);
+  TextStyle bodyStyle =
+      TextStyle(color: GlobalTheme.mutedWhite, fontStyle: FontStyle.italic);
+  TextStyle barStyle =
+      TextStyle(color: GlobalTheme.mutedWhite, fontWeight: FontWeight.bold);
+
+  return SizedBox(
     width: MediaQuery.of(context).size.width / 2,
     height: MediaQuery.of(context).size.width / 2,
     child: (Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AutoSizeText('Hi,', style: headerStyle),
-        AutoSizeText("I'm Ricky", style: headerStyle),
+        Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              child: AutoSizeText.rich(
+                TextSpan(
+                  text: "Hi, I'm Ricky",
+                  style: headerStyle,
+                ),
+                presetFontSizes: [
+                  105,
+                  100,
+                  95,
+                  90,
+                  85,
+                  80,
+                  75,
+                  70,
+                  65,
+                  60,
+                  55,
+                  50,
+                  45,
+                  40,
+                  35,
+                  30,
+                  25,
+                  20,
+                  15
+                ],
+                maxLines: 1,
+              ),
+            ),
+          ],
+        ),
         SizedBox(height: 5),
-        Padding(
-          padding: const EdgeInsets.only(right: 40),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AutoSizeText("｜", style: barStyle),
-              AutoSizeText("A programmer,  I guess", style: bodyStyle)
-            ],
-          ),
+        Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              child: AutoSizeText.rich(
+                  TextSpan(children: [
+                    TextSpan(text: "｜", style: barStyle),
+                    TextSpan(text: "A programmer, I guess", style: bodyStyle)
+                  ]),
+                  presetFontSizes: [
+                    45,
+                    42,
+                    39,
+                    36,
+                    33,
+                    30,
+                    37,
+                    24,
+                    21,
+                    18,
+                    15,
+                    12,
+                    9
+                  ],
+                  maxLines: 1),
+            )
+          ],
         ),
       ],
     )),
@@ -157,19 +207,25 @@ _createHome(BuildContext context) {
 }
 
 _createAbout(BuildContext context) {
-  TextStyle headerStyle = TextStyle(color: Colors.white, fontSize: 72);
+  TextStyle headerStyle = TextStyle(color: Colors.white);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite, fontSize: 32, fontStyle: FontStyle.italic);
 
-  return Container(
+  return SizedBox(
     width: MediaQuery.of(context).size.width / 2,
     height: MediaQuery.of(context).size.width / 2,
     child: (Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        AutoSizeText.rich(TextSpan(text: 'About Me', style: headerStyle),
-            minFontSize: 0, stepGranularity: 0.1, wrapWords: true),
+        AutoSizeText.rich(
+          TextSpan(
+            text: "About Me",
+            style: headerStyle,
+          ),
+          presetFontSizes: [75, 60, 45, 30, 15],
+          maxLines: 1,
+        ),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: SizedBox(

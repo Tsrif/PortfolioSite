@@ -109,17 +109,19 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                           Positioned(
                             left: 20,
                             top: 10,
-                            child: AutoSizeText.rich(
-                                TextSpan(
-                                    text: 'Name of Project',
-                                    style: TextStyle(
-                                        color: showDescription == true
-                                            ? Colors.white.withOpacity(0.9)
-                                            : Colors.white.withOpacity(0.7),
-                                        fontSize: 55)),
-                                minFontSize: 0,
-                                stepGranularity: 0.1,
-                                wrapWords: true),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width / 7,
+                              height: MediaQuery.of(context).size.width / 7,
+                              child: AutoSizeText.rich(
+                                  TextSpan(
+                                      text: 'Name of Project',
+                                      style: TextStyle(
+                                          color: showDescription == true
+                                              ? Colors.white.withOpacity(0.9)
+                                              : Colors.white.withOpacity(0.7))),
+                                  presetFontSizes: [60, 45, 30, 15],
+                                  wrapWords: true),
+                            ),
                           ),
                           //All of this is displayed when we hover
                           Visibility(
@@ -127,11 +129,18 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                             child: Stack(children: [
                               Positioned(
                                 left: 25,
-                                top: 100,
-                                child: AutoSizeText(
-                                    'Description of the project',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 22)),
+                                top: MediaQuery.of(context).size.width / 10,
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width / 6,
+                                  height: MediaQuery.of(context).size.width / 8,
+                                  child: AutoSizeText.rich(
+                                      TextSpan(
+                                          text: 'Description of the project',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                      presetFontSizes: [32, 22],
+                                      wrapWords: true),
+                                ),
                               ),
                               Positioned(
                                 bottom: 0,
