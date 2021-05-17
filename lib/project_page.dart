@@ -18,6 +18,7 @@ List<Widget> _tiles = <Widget>[
         "2D Platformer about a hamburger Named 'Burgie' trying to escape from a fast food restaurant.",
     projectLink: "https://github.com/Tsrif/Burgie",
   ),
+  //TODO Precache images to smoother gif playback
   ProjectWidget(
     image: Image.asset('image/HolidayHellper.png', gaplessPlayback: true),
     replaceImageOnHover:
