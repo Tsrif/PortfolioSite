@@ -10,16 +10,18 @@ const List<StaggeredTile> _staggeredTiles = <StaggeredTile>[
 
 List<Widget> _tiles = <Widget>[
   ProjectWidget(
-    image: Image.asset('image/Burg.png'),
-    replaceImageOnHover: Image.asset('gif/BurgieFlip.gif'),
+    image: Image.asset('image/Burg.png', gaplessPlayback: true),
+    replaceImageOnHover:
+        Image.asset('gif/BurgieFlip.gif', gaplessPlayback: true),
     projectName: 'Burgie',
     projectDescription:
         "2D Platformer about a hamburger Named 'Burgie' trying to escape from a fast food restaurant.",
     projectLink: "https://github.com/Tsrif/Burgie",
   ),
   ProjectWidget(
-    image: Image.asset('image/HolidayHellper.png'),
-    replaceImageOnHover: Image.asset('gif/HolidayHellper2.gif'),
+    image: Image.asset('image/HolidayHellper.png', gaplessPlayback: true),
+    replaceImageOnHover:
+        Image.asset('gif/HolidayHellper2.gif', gaplessPlayback: true),
     projectName: 'Holiday Hellper',
     projectDescription:
         "3D Stealth game where you help Krampus punish misbehaving children.",
