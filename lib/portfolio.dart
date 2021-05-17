@@ -123,6 +123,9 @@ _createSection(BuildContext context, Widget content,
 _createHome(BuildContext context) {
   TextStyle headerStyle = TextStyle(
       color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 7);
+  TextStyle headerStyle2 = TextStyle(
+      color: GlobalTheme.primaryPurple,
+      fontSize: SizeConfig.safeBlockHorizontal * 7);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontStyle: FontStyle.italic,
@@ -142,8 +145,11 @@ _createHome(BuildContext context) {
           children: [
             AutoSizeText.rich(
               TextSpan(
-                text: "Hi, I'm Ricky",
-                style: headerStyle,
+                children: [
+                  TextSpan(text: "Hi, I'm ", style: headerStyle),
+                  TextSpan(text: "Ricky", style: headerStyle2)
+                ],
+                // style: headerStyle,
               ),
               maxLines: 1,
             ),
@@ -168,6 +174,9 @@ _createHome(BuildContext context) {
 _createAbout(BuildContext context) {
   TextStyle headerStyle = TextStyle(
       color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 7);
+  TextStyle headerStyle2 = TextStyle(
+      color: GlobalTheme.primaryPurple,
+      fontSize: SizeConfig.safeBlockHorizontal * 7);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontSize: SizeConfig.safeBlockHorizontal * 4,
@@ -182,8 +191,11 @@ _createAbout(BuildContext context) {
       children: [
         AutoSizeText.rich(
           TextSpan(
-            text: "About Me",
-            style: headerStyle,
+            children: [
+              TextSpan(text: "About ", style: headerStyle),
+              TextSpan(text: "Me", style: headerStyle2)
+            ],
+            // style: headerStyle,
           ),
           maxLines: 1,
         ),

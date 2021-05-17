@@ -72,7 +72,26 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
             focusColor: Colors.transparent,
             highlightColor: Colors.transparent,
             //Without onTap, onHover doesn't work
-            onTap: () {},
+            onTap: () {
+              setState(() {
+                showDescription = !showDescription;
+                if (showDescription == true) {
+                  y = 0.0
+                      .tweenTo(-5.0)
+                      .curved(Curves.ease)
+                      .animatedBy(yController);
+                  yController.play(duration: 200.milliseconds);
+                  colorController.play(duration: 200.milliseconds);
+                } else {
+                  y = 0.0
+                      .tweenTo(-5.0)
+                      .curved(Curves.ease)
+                      .animatedBy(yController);
+                  yController.playReverse(duration: 200.milliseconds);
+                  colorController.playReverse(duration: 200.milliseconds);
+                }
+              });
+            },
             onHover: (value) {
               if (value == true) {
                 setState(() {
@@ -101,8 +120,6 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
               child: Stack(
                 children: [
                   //First up is the picture
-                  // Image.network(
-                  //     "https://picsum.photos/${widget.randomPictureWidth}/${widget.randomPictureHeight}"),
                   showDescription == false
                       ? widget.image
                       : widget.replaceImageOnHover,

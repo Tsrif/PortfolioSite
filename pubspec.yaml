@@ -57,9 +57,11 @@ flutter:
   assets:
     - assets/gif/glitchyhead.gif
     - assets/gif/BurgieFlip.gif
+    - assets/gif/HolidayHellper.gif
+    - assets/gif/HolidayHellper2.gif
     - assets/image/mehead.png
-    - assets/image/Burgie.png
-    - assets/image/BigBurg.png
+    - assets/image/Burg.png
+    - assets/image/HolidayHellper.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
