@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_site/portfolio.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'splash.dart';
 
 import 'Globaltheme.dart';
@@ -12,16 +13,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Ricky's Portfolio",
       theme: GlobalTheme.darkTheme,
-      home: Center(
-        child: Splash(
-            miliseconds: 700,
-            navigateAfterSeconds: PortfolioSite(title: 'Demo'),
-            image: Image.asset('gif/glitchyhead.gif'),
-            backgroundColor: Colors.black,
-            photoSize: 300.0),
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget),
+        defaultScale: true,
+        minWidth: 480,
+        defaultName: DESKTOP,
+        breakpoints: [
+          ResponsiveBreakpoint.autoScale(480, name: MOBILE),
+          ResponsiveBreakpoint.resize(600, name: MOBILE),
+          ResponsiveBreakpoint.resize(850, name: TABLET),
+          ResponsiveBreakpoint.resize(1080, name: DESKTOP),
+        ],
       ),
+      home: Splash(
+          miliseconds: 700,
+          navigateAfterSeconds: PortfolioSite(title: 'Demo'),
+          image: Image.asset('gif/glitchyhead.gif'),
+          backgroundColor: Colors.black,
+          photoSize: 300.0),
     );
   }
 }

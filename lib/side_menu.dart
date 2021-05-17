@@ -15,65 +15,69 @@ class SideMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            padding:
-                EdgeInsets.only(bottom: MediaQuery.of(context).size.height / 4),
-            child: Column(children: [
-              SizedBox(height: 20),
-              AutoSizeText('Ricky',
-                  style: TextStyle(
-                      fontSize: 22, color: GlobalTheme.primaryPurple)),
-              AutoSizeText('Rivera',
-                  style:
-                      TextStyle(fontSize: 22, color: GlobalTheme.mutedWhite)),
-              SizedBox(width: 70, child: Divider(thickness: 3)),
-            ])),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedButton(
-              child: AutoSizeText('Home',
-                  textAlign: TextAlign.right,
-                  style:
-                      TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
-              onTap: () {
-                _scrollController.scrollTo(
-                    index: 0,
-                    duration: Duration(milliseconds: 1700),
-                    curve: Curves.bounceIn.flipped);
-              },
-            ),
-            SizedBox(height: 10),
-            AnimatedButton(
-              child: AutoSizeText('About',
-                  textAlign: TextAlign.right,
-                  style:
-                      TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
-              onTap: () {
-                _scrollController.scrollTo(
-                    index: 1,
-                    duration: Duration(milliseconds: 1700),
-                    curve: Curves.bounceIn.flipped);
-              },
-            ),
-            SizedBox(height: 10),
-            AnimatedButton(
-              child: AutoSizeText('Projects',
-                  textAlign: TextAlign.right,
-                  style:
-                      TextStyle(fontSize: 25, color: GlobalTheme.mutedWhite)),
-              onTap: () {
-                _scrollController.scrollTo(
-                    index: 2,
-                    duration: Duration(milliseconds: 1700),
-                    curve: Curves.bounceIn.flipped);
-              },
-            ),
-          ],
-        )
-      ],
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Column(
+        children: [
+          Container(
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height / 4),
+              child: Column(children: [
+                SizedBox(height: 20),
+                AutoSizeText('Ricky',
+                    style: TextStyle(
+                        fontSize: 22, color: GlobalTheme.primaryPurple)),
+                AutoSizeText('Rivera',
+                    style: TextStyle(
+                        fontSize: 22, color: GlobalTheme.mutedWhite)),
+                SizedBox(width: 70, child: Divider(thickness: 3)),
+              ])),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedButton(
+                child: AutoSizeText('Home',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontSize: 28, color: GlobalTheme.mutedWhite)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 0,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+              SizedBox(height: 10),
+              AnimatedButton(
+                child: AutoSizeText('About',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontSize: 28, color: GlobalTheme.mutedWhite)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 1,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+              SizedBox(height: 10),
+              AnimatedButton(
+                child: AutoSizeText('Projects',
+                    textAlign: TextAlign.right,
+                    wrapWords: false,
+                    style: TextStyle(
+                        fontSize: 25, color: GlobalTheme.mutedWhite)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 2,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

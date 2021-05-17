@@ -31,16 +31,9 @@ class _PortfolioSiteState extends State<PortfolioSite> {
         backgroundColor: GlobalTheme.primaryColor,
         body: Stack(
           children: [
-            Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: 115,
-                  color: GlobalTheme.primaryColor,
-                  child: SideMenu(scrollController: _scrollController),
-                )),
+            SideMenu(scrollController: _scrollController),
             Positioned.fill(
-              left: 96,
+              left: 100,
               child: Align(
                   alignment: Alignment.centerRight,
                   child: ScrollablePositionedList.builder(
