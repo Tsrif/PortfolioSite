@@ -6,13 +6,19 @@ import 'package:supercharged/supercharged.dart';
 import 'dart:html' as html;
 
 class ProjectWidget extends StatefulWidget {
-  final int randomPictureWidth;
-  final int randomPictureHeight;
+  final Image image;
+  final Image replaceImageOnHover;
+  final String projectName;
+  final String projectDescription;
+  final String projectLink;
 
   const ProjectWidget(
       {Key key,
-      @required this.randomPictureWidth,
-      @required this.randomPictureHeight})
+      @required this.image,
+      this.replaceImageOnHover,
+      this.projectName = 'Name Of Project',
+      this.projectDescription = 'Description Of Project',
+      this.projectLink = 'https://www.google.com/'})
       : super(key: key);
   @override
   _ProjectWidgetState createState() => _ProjectWidgetState();
@@ -33,7 +39,7 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
     yController = createController();
     color = Colors.black
         .withOpacity(0.5)
-        .tweenTo(Colors.black.withOpacity(0.8))
+        .tweenTo(Colors.black.withOpacity(0.6))
         .animatedBy(colorController);
     y = 0.0.tweenTo(-20.0).curved(Curves.ease).animatedBy(yController);
     super.initState();
@@ -95,8 +101,11 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
               child: Stack(
                 children: [
                   //First up is the picture
-                  Image.network(
-                      "https://picsum.photos/${widget.randomPictureWidth}/${widget.randomPictureHeight}"),
+                  // Image.network(
+                  //     "https://picsum.photos/${widget.randomPictureWidth}/${widget.randomPictureHeight}"),
+                  showDescription == false
+                      ? widget.image
+                      : widget.replaceImageOnHover,
                   Positioned(
                     top: 0,
                     bottom: 0,
@@ -112,14 +121,14 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                             top: 10,
                             child: AutoSizeText.rich(
                                 TextSpan(
-                                    text: 'Name of Project',
+                                    text: widget.projectName,
                                     style: TextStyle(
                                         fontSize:
                                             SizeConfig.safeBlockHorizontal *
                                                 2.5,
                                         color: showDescription == true
-                                            ? Colors.white.withOpacity(0.9)
-                                            : Colors.white.withOpacity(0.7))),
+                                            ? Colors.white.withOpacity(0.8)
+                                            : Colors.white.withOpacity(0.6))),
                                 wrapWords: true),
                           ),
                           //All of this is displayed when we hover
@@ -129,15 +138,18 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                               Positioned(
                                 left: 25,
                                 top: SizeConfig.safeBlockVertical * 10,
-                                child: AutoSizeText.rich(
-                                    TextSpan(
-                                        text: 'Description of the project',
-                                        style: TextStyle(
-                                            fontSize:
-                                                SizeConfig.safeBlockHorizontal *
-                                                    1.8,
-                                            color: Colors.white)),
-                                    wrapWords: true),
+                                child: SizedBox(
+                                  width: SizeConfig.blockSizeHorizontal * 20,
+                                  child: AutoSizeText.rich(
+                                      TextSpan(
+                                          text: widget.projectDescription,
+                                          style: TextStyle(
+                                              fontSize: SizeConfig
+                                                      .safeBlockHorizontal *
+                                                  1.5,
+                                              color: Colors.white)),
+                                      wrapWords: true),
+                                ),
                               ),
                               Positioned(
                                 bottom: 0,
@@ -145,8 +157,8 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                                 right: 0,
                                 child: InkWell(
                                     onTap: () {
-                                      html.window.open(
-                                          'https://www.google.com/', 'new tab');
+                                      html.window
+                                          .open(widget.projectLink, 'new tab');
                                     },
                                     onHover: (value) {
                                       if (value == true) {

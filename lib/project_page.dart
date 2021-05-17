@@ -4,14 +4,19 @@ import 'package:portfolio_site/project_widget.dart';
 
 const List<StaggeredTile> _staggeredTiles = <StaggeredTile>[
   StaggeredTile.fit(1),
-  StaggeredTile.fit(1),
-  StaggeredTile.fit(1)
+  //StaggeredTile.fit(1),
+  //StaggeredTile.fit(1)
 ];
 
 List<Widget> _tiles = <Widget>[
-  ProjectWidget(randomPictureWidth: 500, randomPictureHeight: 500),
-  ProjectWidget(randomPictureWidth: 600, randomPictureHeight: 800),
-  ProjectWidget(randomPictureWidth: 800, randomPictureHeight: 1000)
+  ProjectWidget(
+    image: Image.asset('image/Burg.png'),
+    replaceImageOnHover: Image.asset('gif/BurgieFlip.gif'),
+    projectName: 'Burgie',
+    projectDescription:
+        "2D Platformer about a hamburger Named 'Burgie' trying to escape from a fast food restaurant.",
+    projectLink: "https://github.com/Tsrif/Burgie",
+  )
 ];
 
 class ProjectPage extends StatelessWidget {

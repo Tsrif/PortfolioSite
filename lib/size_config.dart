@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-
+///Code taken from https://medium.com/flutter-community/flutter-effectively-scale-ui-according-to-different-screen-sizes-2cb7c115ea0a
+///Basic idea is to create a grid of 100x100 "Blocks" and then size everything in reference to how much space they take up within blocks. 
 class SizeConfig {
   static MediaQueryData _mediaQueryData;
   static double screenWidth;
