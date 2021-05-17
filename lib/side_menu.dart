@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_site/Globaltheme.dart';
 import 'package:portfolio_site/animated_button.dart';
+import 'package:portfolio_site/size_config.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SideMenu extends StatelessWidget {
@@ -21,7 +22,7 @@ class SideMenu extends StatelessWidget {
         children: [
           Container(
               padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height / 4),
+                  bottom: SizeConfig.blockSizeVertical * 25),
               child: Column(children: [
                 SizedBox(height: 20),
                 AutoSizeText('Ricky',

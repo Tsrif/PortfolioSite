@@ -2,10 +2,13 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_site/project_page.dart';
 import 'package:portfolio_site/side_menu.dart';
+import 'package:portfolio_site/size_config.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'corner_decoration.dart';
 
 import 'Globaltheme.dart';
+
+SizeConfig sizeConfig = SizeConfig.instance;
 
 class PortfolioSite extends StatefulWidget {
   PortfolioSite({Key key, this.title}) : super(key: key);
@@ -26,6 +29,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
 
   @override
   Widget build(BuildContext context) {
+    sizeConfig.init(context);
     return Scaffold(
         primary: true,
         backgroundColor: GlobalTheme.primaryColor,
@@ -59,8 +63,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
 _createSection(BuildContext context, Widget content,
     {double customHeight = 2.0}) {
   return SizedBox(
-      height: MediaQuery.of(context).size.width / customHeight,
-      width: MediaQuery.of(context).size.width / 1.1,
+      height: SizeConfig.blockSizeVertical * 100,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -78,120 +81,83 @@ _createSection(BuildContext context, Widget content,
       ));
 }
 
-sectionContentBox(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 15),
-    child: Container(
-      width: MediaQuery.of(context).size.width / 5,
-      height: 400,
-      decoration: ConcaveDecoration(
-          depression: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          colors: [Color(0x3e000000), Color(0XFF4D4A50)]),
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 10.0),
-          Center(
-            child: AutoSizeText(
-              'Project Name',
-              style: TextStyle(fontSize: 32, color: Color(0XFFE6E3E9)),
-            ),
-          ),
-          SizedBox(height: 10.0),
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width / 6,
-              child: AutoSizeText(
-                "I don't know. Maybe put like the project description here?",
-                style: TextStyle(fontSize: 15, color: Color(0XFFE6E3E9)),
-              ),
-            ),
-          ),
-          SizedBox(height: 50),
-        ],
-      ),
-    ),
-  );
-}
+// sectionContentBox(BuildContext context) {
+//   return Padding(
+//     padding: const EdgeInsets.symmetric(vertical: 15),
+//     child: Container(
+//       width: MediaQuery.of(context).size.width / 5,
+//       height: 400,
+//       decoration: ConcaveDecoration(
+//           depression: 5,
+//           shape:
+//               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+//           colors: [Color(0x3e000000), Color(0XFF4D4A50)]),
+//       child: Column(
+//         //mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           SizedBox(height: 10.0),
+//           Center(
+//             child: AutoSizeText(
+//               'Project Name',
+//               style: TextStyle(fontSize: 32, color: Color(0XFFE6E3E9)),
+//             ),
+//           ),
+//           SizedBox(height: 10.0),
+//           Center(
+//             child: Container(
+//               width: MediaQuery.of(context).size.width / 6,
+//               child: AutoSizeText(
+//                 "I don't know. Maybe put like the project description here?",
+//                 style: TextStyle(fontSize: 15, color: Color(0XFFE6E3E9)),
+//               ),
+//             ),
+//           ),
+//           SizedBox(height: 50),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 _createHome(BuildContext context) {
-  TextStyle headerStyle = TextStyle(color: Colors.white);
-  TextStyle bodyStyle =
-      TextStyle(color: GlobalTheme.mutedWhite, fontStyle: FontStyle.italic);
-  TextStyle barStyle =
-      TextStyle(color: GlobalTheme.mutedWhite, fontWeight: FontWeight.bold);
+  TextStyle headerStyle = TextStyle(
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 7);
+  TextStyle bodyStyle = TextStyle(
+      color: GlobalTheme.mutedWhite,
+      fontStyle: FontStyle.italic,
+      fontSize: SizeConfig.safeBlockHorizontal * 2.8);
+  TextStyle barStyle = TextStyle(
+      color: GlobalTheme.mutedWhite,
+      fontWeight: FontWeight.bold,
+      fontSize: SizeConfig.safeBlockHorizontal * 2.8);
 
   return SizedBox(
-    width: MediaQuery.of(context).size.width / 2,
-    height: MediaQuery.of(context).size.width / 2,
+    width: SizeConfig.blockSizeHorizontal * 50,
+    height: SizeConfig.blockSizeVertical * 50,
     child: (Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
-              child: AutoSizeText.rich(
-                TextSpan(
-                  text: "Hi, I'm Ricky",
-                  style: headerStyle,
-                ),
-                presetFontSizes: [
-                  105,
-                  100,
-                  95,
-                  90,
-                  85,
-                  80,
-                  75,
-                  70,
-                  65,
-                  60,
-                  55,
-                  50,
-                  45,
-                  40,
-                  35,
-                  30,
-                  25,
-                  20,
-                  15
-                ],
-                maxLines: 1,
+            AutoSizeText.rich(
+              TextSpan(
+                text: "Hi, I'm Ricky",
+                style: headerStyle,
               ),
+              maxLines: 1,
             ),
           ],
         ),
         SizedBox(height: 5),
         Row(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 4,
-              child: AutoSizeText.rich(
-                  TextSpan(children: [
-                    TextSpan(text: "｜", style: barStyle),
-                    TextSpan(text: "A programmer, I guess", style: bodyStyle)
-                  ]),
-                  presetFontSizes: [
-                    45,
-                    42,
-                    39,
-                    36,
-                    33,
-                    30,
-                    37,
-                    24,
-                    21,
-                    18,
-                    15,
-                    12,
-                    9
-                  ],
-                  maxLines: 1),
-            )
+            AutoSizeText.rich(
+                TextSpan(children: [
+                  TextSpan(text: "｜", style: barStyle),
+                  TextSpan(text: "A programmer, I guess", style: bodyStyle)
+                ]),
+                maxLines: 1)
           ],
         ),
       ],
@@ -200,13 +166,16 @@ _createHome(BuildContext context) {
 }
 
 _createAbout(BuildContext context) {
-  TextStyle headerStyle = TextStyle(color: Colors.white);
+  TextStyle headerStyle = TextStyle(
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 7);
   TextStyle bodyStyle = TextStyle(
-      color: GlobalTheme.mutedWhite, fontSize: 32, fontStyle: FontStyle.italic);
+      color: GlobalTheme.mutedWhite,
+      fontSize: SizeConfig.safeBlockHorizontal * 4,
+      fontStyle: FontStyle.italic);
 
   return SizedBox(
-    width: MediaQuery.of(context).size.width / 2,
-    height: MediaQuery.of(context).size.width / 2,
+    width: SizeConfig.blockSizeHorizontal * 50,
+    height: SizeConfig.blockSizeVertical * 50,
     child: (Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -216,13 +185,12 @@ _createAbout(BuildContext context) {
             text: "About Me",
             style: headerStyle,
           ),
-          presetFontSizes: [75, 60, 45, 30, 15],
           maxLines: 1,
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: SizedBox(
-              width: MediaQuery.of(context).size.width / 4,
+              width: SizeConfig.blockSizeHorizontal * 25,
               child: Divider(thickness: 3)),
         ),
         Expanded(

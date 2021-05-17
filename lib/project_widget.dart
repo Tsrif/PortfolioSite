@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_site/size_config.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 import 'dart:html' as html;
@@ -107,21 +108,19 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                       child: Stack(
                         children: [
                           Positioned(
-                            left: 20,
+                            left: SizeConfig.blockSizeHorizontal * 1.2,
                             top: 10,
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width / 7,
-                              height: MediaQuery.of(context).size.width / 7,
-                              child: AutoSizeText.rich(
-                                  TextSpan(
-                                      text: 'Name of Project',
-                                      style: TextStyle(
-                                          color: showDescription == true
-                                              ? Colors.white.withOpacity(0.9)
-                                              : Colors.white.withOpacity(0.7))),
-                                  presetFontSizes: [60, 45, 30, 15],
-                                  wrapWords: true),
-                            ),
+                            child: AutoSizeText.rich(
+                                TextSpan(
+                                    text: 'Name of Project',
+                                    style: TextStyle(
+                                        fontSize:
+                                            SizeConfig.safeBlockHorizontal *
+                                                2.5,
+                                        color: showDescription == true
+                                            ? Colors.white.withOpacity(0.9)
+                                            : Colors.white.withOpacity(0.7))),
+                                wrapWords: true),
                           ),
                           //All of this is displayed when we hover
                           Visibility(
@@ -129,18 +128,16 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                             child: Stack(children: [
                               Positioned(
                                 left: 25,
-                                top: MediaQuery.of(context).size.width / 10,
-                                child: SizedBox(
-                                  width: MediaQuery.of(context).size.width / 6,
-                                  height: MediaQuery.of(context).size.width / 8,
-                                  child: AutoSizeText.rich(
-                                      TextSpan(
-                                          text: 'Description of the project',
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                      presetFontSizes: [32, 22],
-                                      wrapWords: true),
-                                ),
+                                top: SizeConfig.safeBlockVertical * 10,
+                                child: AutoSizeText.rich(
+                                    TextSpan(
+                                        text: 'Description of the project',
+                                        style: TextStyle(
+                                            fontSize:
+                                                SizeConfig.safeBlockHorizontal *
+                                                    1.8,
+                                            color: Colors.white)),
+                                    wrapWords: true),
                               ),
                               Positioned(
                                 bottom: 0,
