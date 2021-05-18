@@ -235,10 +235,10 @@ _createHome(BuildContext context) {
 
 _createAbout(BuildContext context) {
   TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 14);
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 12);
   TextStyle headerStyle2 = TextStyle(
       color: GlobalTheme.primaryPurple,
-      fontSize: SizeConfig.safeBlockHorizontal * 14);
+      fontSize: SizeConfig.safeBlockHorizontal * 12);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontSize: SizeConfig.safeBlockHorizontal * 7,
