@@ -150,22 +150,22 @@ _createSection(BuildContext context, Widget content) {
 
 _createHome(BuildContext context) {
   TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 7);
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 10);
   TextStyle headerStyle2 = TextStyle(
       color: GlobalTheme.primaryPurple,
-      fontSize: SizeConfig.safeBlockHorizontal * 7);
+      fontSize: SizeConfig.safeBlockHorizontal * 10);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontStyle: FontStyle.italic,
-      fontSize: SizeConfig.safeBlockHorizontal * 2.8);
+      fontSize: SizeConfig.safeBlockHorizontal * 3.8);
   TextStyle animatedText = TextStyle(
       color: GlobalTheme.primaryPurple,
       fontStyle: FontStyle.italic,
-      fontSize: SizeConfig.safeBlockHorizontal * 2.8);
+      fontSize: SizeConfig.safeBlockHorizontal * 3.8);
   TextStyle barStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontWeight: FontWeight.bold,
-      fontSize: SizeConfig.safeBlockHorizontal * 2.8);
+      fontSize: SizeConfig.safeBlockHorizontal * 3.8);
 
 //This whole thing is confusing and hard to look at
 //There's gotta be an easier way to make this happen with not as ugly code
@@ -190,7 +190,7 @@ _createHome(BuildContext context) {
         ),
         Transform.translate(
           offset: Offset(SizeConfig.safeBlockHorizontal * 0.3,
-              SizeConfig.safeBlockHorizontal * 5),
+              SizeConfig.safeBlockHorizontal * 7),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -205,8 +205,8 @@ _createHome(BuildContext context) {
           ),
         ),
         Transform.translate(
-            offset: Offset(SizeConfig.safeBlockHorizontal * 3.5,
-                SizeConfig.safeBlockHorizontal * 5),
+            offset: Offset(SizeConfig.safeBlockHorizontal * 4.5,
+                SizeConfig.safeBlockHorizontal * 7),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -235,13 +235,13 @@ _createHome(BuildContext context) {
 
 _createAbout(BuildContext context) {
   TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 7);
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 14);
   TextStyle headerStyle2 = TextStyle(
       color: GlobalTheme.primaryPurple,
-      fontSize: SizeConfig.safeBlockHorizontal * 7);
+      fontSize: SizeConfig.safeBlockHorizontal * 14);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
-      fontSize: SizeConfig.safeBlockHorizontal * 4,
+      fontSize: SizeConfig.safeBlockHorizontal * 7,
       fontStyle: FontStyle.italic);
 
   return SizedBox(
@@ -264,7 +264,7 @@ _createAbout(BuildContext context) {
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: SizedBox(
-              width: SizeConfig.blockSizeHorizontal * 25,
+              width: SizeConfig.blockSizeHorizontal * 50,
               child: Divider(thickness: 3)),
         ),
         Expanded(
