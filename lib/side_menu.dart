@@ -20,27 +20,30 @@ class SideMenu extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Column(
         children: [
-          Container(
-              padding: EdgeInsets.only(
-                  bottom: SizeConfig.blockSizeVertical * 25),
-              child: Column(children: [
-                SizedBox(height: 20),
-                AutoSizeText('Ricky',
-                    style: TextStyle(
-                        fontSize: 22, color: GlobalTheme.primaryPurple)),
-                AutoSizeText('Rivera',
-                    style: TextStyle(
-                        fontSize: 22, color: GlobalTheme.mutedWhite)),
-                SizedBox(width: 70, child: Divider(thickness: 3)),
-              ])),
+          // Container(
+          //     padding: EdgeInsets.only(
+          //         bottom: SizeConfig.blockSizeVertical * 25),
+          //     child: Column(children: [
+          //       SizedBox(height: 20),
+          //       AutoSizeText('Ricky',
+          //           style: TextStyle(
+          //               fontSize: 22, color: GlobalTheme.primaryPurple)),
+          //       AutoSizeText('Rivera',
+          //           style: TextStyle(
+          //               fontSize: 22, color: GlobalTheme.mutedWhite)),
+          //       SizedBox(width: 70, child: Divider(thickness: 3)),
+          //     ])),
+          SizedBox(
+            height: SizeConfig.blockSizeVertical * 30,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AnimatedButton(
                 child: AutoSizeText('Home',
                     textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontSize: 28, color: GlobalTheme.mutedWhite)),
+                    style:
+                        TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
                 onTap: () {
                   _scrollController.scrollTo(
                       index: 0,
@@ -52,8 +55,8 @@ class SideMenu extends StatelessWidget {
               AnimatedButton(
                 child: AutoSizeText('About',
                     textAlign: TextAlign.right,
-                    style: TextStyle(
-                        fontSize: 28, color: GlobalTheme.mutedWhite)),
+                    style:
+                        TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
                 onTap: () {
                   _scrollController.scrollTo(
                       index: 1,
@@ -66,8 +69,8 @@ class SideMenu extends StatelessWidget {
                 child: AutoSizeText('Projects',
                     textAlign: TextAlign.right,
                     wrapWords: false,
-                    style: TextStyle(
-                        fontSize: 25, color: GlobalTheme.mutedWhite)),
+                    style:
+                        TextStyle(fontSize: 25, color: GlobalTheme.mutedWhite)),
                 onTap: () {
                   _scrollController.scrollTo(
                       index: 2,

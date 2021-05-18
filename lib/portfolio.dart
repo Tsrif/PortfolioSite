@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_site/project_page.dart';
 import 'package:portfolio_site/side_menu.dart';
 import 'package:portfolio_site/size_config.dart';
+import 'package:portfolio_site/top_menu.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'Globaltheme.dart';
@@ -20,6 +21,7 @@ class PortfolioSite extends StatefulWidget {
 
 class _PortfolioSiteState extends State<PortfolioSite> {
   ItemScrollController _scrollController = ItemScrollController();
+  bool isMobile = false;
 
   @override
   @override
@@ -30,14 +32,41 @@ class _PortfolioSiteState extends State<PortfolioSite> {
   @override
   Widget build(BuildContext context) {
     sizeConfig.init(context);
+    if (SizeConfig.screenWidth <= 768) {
+      isMobile = true;
+    } else {
+      isMobile = false;
+    }
     return Scaffold(
         primary: true,
         backgroundColor: GlobalTheme.primaryColor,
         body: Stack(
           children: [
-            SideMenu(scrollController: _scrollController),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: SizeConfig.blockSizeVertical * 20, left: 20),
+                  child: Column(children: [
+                    SizedBox(height: 20),
+                    AutoSizeText('Ricky',
+                        style: TextStyle(
+                            fontSize: 22, color: GlobalTheme.primaryPurple)),
+                    AutoSizeText('Rivera',
+                        style: TextStyle(
+                            fontSize: 22, color: GlobalTheme.mutedWhite)),
+                    SizedBox(width: 70, child: Divider(thickness: 3)),
+                  ])),
+            ),
+            Visibility(
+                visible: !isMobile,
+                child: SideMenu(scrollController: _scrollController)),
+            Visibility(
+                visible: isMobile,
+                child: TopMenu(scrollController: _scrollController)),
             Positioned.fill(
-              left: 100,
+              left: isMobile == true ? 0 : 100,
+              top: isMobile == true ? 80 : 0,
               child: Align(
                   alignment: Alignment.centerRight,
                   child: ScrollablePositionedList.builder(
@@ -60,8 +89,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
   }
 }
 
-_createSection(BuildContext context, Widget content,
-    {double customHeight = 2.0}) {
+_createSection(BuildContext context, Widget content) {
   return SizedBox(
       height: SizeConfig.blockSizeVertical * 100,
       child: Padding(
