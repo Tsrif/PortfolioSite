@@ -100,7 +100,7 @@ _createSection(BuildContext context, Widget content) {
             gradient: LinearGradient(
               begin: Alignment(-1.0, 0.0),
               end: Alignment(1.0, 0.0),
-              colors: GlobalTheme.darkGradient,
+              colors: GlobalTheme.darkGradient2,
               stops: [0.0, 1.0],
             ),
           ),
@@ -150,10 +150,10 @@ _createSection(BuildContext context, Widget content) {
 
 _createHome(BuildContext context) {
   TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 10);
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle headerStyle2 = TextStyle(
       color: GlobalTheme.primaryPurple,
-      fontSize: SizeConfig.safeBlockHorizontal * 10);
+      fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontStyle: FontStyle.italic,
@@ -235,10 +235,10 @@ _createHome(BuildContext context) {
 
 _createAbout(BuildContext context) {
   TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 12);
+      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle headerStyle2 = TextStyle(
       color: GlobalTheme.primaryPurple,
-      fontSize: SizeConfig.safeBlockHorizontal * 12);
+      fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontSize: SizeConfig.safeBlockHorizontal * 7,
