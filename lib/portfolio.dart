@@ -1,10 +1,10 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_site/project_page.dart';
 import 'package:portfolio_site/side_menu.dart';
 import 'package:portfolio_site/size_config.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'corner_decoration.dart';
 
 import 'Globaltheme.dart';
 
@@ -130,16 +130,22 @@ _createHome(BuildContext context) {
       color: GlobalTheme.mutedWhite,
       fontStyle: FontStyle.italic,
       fontSize: SizeConfig.safeBlockHorizontal * 2.8);
+  TextStyle animatedText = TextStyle(
+      color: GlobalTheme.primaryPurple,
+      fontStyle: FontStyle.italic,
+      fontSize: SizeConfig.safeBlockHorizontal * 2.8);
   TextStyle barStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontWeight: FontWeight.bold,
       fontSize: SizeConfig.safeBlockHorizontal * 2.8);
 
+//This whole thing is confusing and hard to look at
+//There's gotta be an easier way to make this happen with not as ugly code
   return SizedBox(
     width: SizeConfig.blockSizeHorizontal * 50,
-    height: SizeConfig.blockSizeVertical * 50,
-    child: (Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    height: SizeConfig.safeBlockVertical * 30,
+    child: (Stack(
+      alignment: Alignment.center,
       children: [
         Row(
           children: [
@@ -149,23 +155,51 @@ _createHome(BuildContext context) {
                   TextSpan(text: "Hi, I'm ", style: headerStyle),
                   TextSpan(text: "Ricky", style: headerStyle2)
                 ],
-                // style: headerStyle,
               ),
               maxLines: 1,
             ),
           ],
         ),
-        SizedBox(height: 5),
-        Row(
-          children: [
-            AutoSizeText.rich(
-                TextSpan(children: [
-                  TextSpan(text: "｜", style: barStyle),
-                  TextSpan(text: "A programmer, I guess", style: bodyStyle)
-                ]),
-                maxLines: 1)
-          ],
+        Transform.translate(
+          offset: Offset(SizeConfig.safeBlockHorizontal * 0.3,
+              SizeConfig.safeBlockHorizontal * 5),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText.rich(
+                  TextSpan(children: [
+                    TextSpan(text: "| ", style: barStyle),
+                    TextSpan(text: "A", style: bodyStyle)
+                  ]),
+                  maxLines: 1),
+              SizedBox(width: SizeConfig.blockSizeHorizontal * 0.8),
+            ],
+          ),
         ),
+        Transform.translate(
+            offset: Offset(SizeConfig.safeBlockHorizontal * 3.5,
+                SizeConfig.safeBlockHorizontal * 5),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: SizeConfig.blockSizeVertical * 10,
+                  child: AnimatedTextKit(repeatForever: true, animatedTexts: [
+                    RotateAnimatedText('Programmer', textStyle: animatedText),
+                    RotateAnimatedText('Something else',
+                        textStyle: animatedText),
+                    RotateAnimatedText('uhh', textStyle: animatedText),
+                    RotateAnimatedText('Just gimme a second okay?',
+                        textStyle: animatedText),
+                    RotateAnimatedText(
+                      '...',
+                      textStyle: animatedText,
+                    ),
+                    RotateAnimatedText('Oh I got it', textStyle: animatedText),
+                  ]),
+                )
+              ],
+            ))
       ],
     )),
   );

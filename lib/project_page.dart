@@ -18,7 +18,6 @@ List<Widget> _tiles = <Widget>[
         "2D Platformer about a hamburger Named 'Burgie' trying to escape from a fast food restaurant.",
     projectLink: "https://github.com/Tsrif/Burgie",
   ),
-  //TODO Precache images to smoother gif playback
   ProjectWidget(
     image: Image.asset('image/HolidayHellper.png', gaplessPlayback: true),
     replaceImageOnHover:
@@ -33,6 +32,9 @@ List<Widget> _tiles = <Widget>[
 class ProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //Cache the gifs so they load faster
+    precacheImage(new AssetImage('gif/HolidayHellper2.gif'), context);
+    precacheImage(new AssetImage('gif/BurgieFlip.gif'), context);
     return StaggeredGridView.count(
       crossAxisCount: 4,
       staggeredTiles: _staggeredTiles,
