@@ -12,6 +12,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //cache gif 
+    precacheImage(new AssetImage('gif/glitchyhead.gif'), context);
     return MaterialApp(
       theme: GlobalTheme.darkTheme,
       builder: (context, widget) => ResponsiveWrapper.builder(

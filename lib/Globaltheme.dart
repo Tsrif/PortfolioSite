@@ -57,6 +57,7 @@ class GlobalTheme {
   );
 
   static Color primaryColor = Color(0XFF171618);
+  static Color primaryDarkPurple = Color(0xFF170e13);
   static Color lightGray = Color(0XFF4C4C51);
   static Color appBarColor = Color(0XFF2D2D31);
   static Color primaryBlue = Color(0XFF6462FD);
@@ -66,8 +67,14 @@ class GlobalTheme {
   static Color primaryPurple = Color(0XFF7C32CA);
   static Color mutedWhite = Color(0XFFB6B6CA);
   static List<Color> darkGradient = [Color(0xFF2E2F3C), Color(0xFF38384A)];
-  static List<Color> darkGradient2 = [Color(0xFF170e13).withOpacity(0.2), Color(0xFF7a7adb).withOpacity(0.2)];
-  static List<Color> darkGradient3 = [Color(0xFFad1deb).withOpacity(0.2), Color(0xFF6e72fc).withOpacity(0.2)];
+  static List<Color> darkGradient2 = [
+    Color(0xFF170e13).withOpacity(0.2),
+    Color(0xFF7a7adb).withOpacity(0.2)
+  ];
+  static List<Color> darkGradient3 = [
+    Color(0xFFad1deb).withOpacity(0.2),
+    Color(0xFF6e72fc).withOpacity(0.2)
+  ];
   static List<List<Color>> gradients = [
     [const Color(0xffB15DFF), const Color(0xff72DEFF)],
     [const Color(0xff36d6aa), const Color(0xff2ec9f2)],
