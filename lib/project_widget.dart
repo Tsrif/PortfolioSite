@@ -152,9 +152,8 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                           Visibility(
                             visible: showDescription,
                             child: Stack(children: [
-                              Positioned(
-                                left: 25,
-                                top: SizeConfig.safeBlockVertical * 10,
+                              Align(
+                                alignment: Alignment.center,
                                 child: SizedBox(
                                   width: SizeConfig.blockSizeHorizontal * 20,
                                   child: AutoSizeText.rich(

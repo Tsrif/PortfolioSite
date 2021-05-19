@@ -75,6 +75,7 @@ class GlobalTheme {
     Color(0xFFad1deb).withOpacity(0.2),
     Color(0xFF6e72fc).withOpacity(0.2)
   ];
+  static List<Color> darkGradient4 = [Color(0xFF161418), Color(0xFF2C2D40)];
   static List<List<Color>> gradients = [
     [const Color(0xffB15DFF), const Color(0xff72DEFF)],
     [const Color(0xff36d6aa), const Color(0xff2ec9f2)],

@@ -39,52 +39,62 @@ class _PortfolioSiteState extends State<PortfolioSite> {
     }
     return Scaffold(
         primary: true,
-        backgroundColor: GlobalTheme.primaryColor,
-        body: Stack(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                  padding: EdgeInsets.only(
-                      bottom: SizeConfig.blockSizeVertical * 20, left: 20),
-                  child: Column(children: [
-                    SizedBox(height: 20),
-                    AutoSizeText('Ricky',
-                        style: TextStyle(
-                            fontSize: 22, color: GlobalTheme.primaryPurple)),
-                    AutoSizeText('Rivera',
-                        style: TextStyle(
-                            fontSize: 22, color: GlobalTheme.mutedWhite)),
-                    SizedBox(width: 70, child: Divider(thickness: 3)),
-                  ])),
+        backgroundColor: Colors.transparent,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment(-1.0, 0.0),
+              end: Alignment(1.0, 0.0),
+              colors: GlobalTheme.darkGradient4,
+              stops: [0.0, 1.0],
             ),
-            Visibility(
-                visible: !isMobile,
-                child: SideMenu(scrollController: _scrollController)),
-            Visibility(
-                visible: isMobile,
-                child: TopMenu(scrollController: _scrollController)),
-            Positioned.fill(
-              left: isMobile == true ? 0 : 100,
-              top: isMobile == true ? 80 : 0,
-              child: Align(
-                  alignment: Alignment.centerRight,
-                  child: ScrollablePositionedList.builder(
-                    itemScrollController: _scrollController,
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return [
-                        _createSection(context, _createHome(context)),
-                        _createSection(
-                          context,
-                          _createAbout(context),
-                        ),
-                        _createSection(context, ProjectPage()),
-                      ][index];
-                    },
-                  )),
-            ),
-          ],
+          ),
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                    padding: EdgeInsets.only(
+                        bottom: SizeConfig.blockSizeVertical * 20, left: 20),
+                    child: Column(children: [
+                      SizedBox(height: 20),
+                      AutoSizeText('Ricky',
+                          style: TextStyle(
+                              fontSize: 22, color: GlobalTheme.primaryPurple)),
+                      AutoSizeText('Rivera',
+                          style: TextStyle(
+                              fontSize: 22, color: GlobalTheme.mutedWhite)),
+                      SizedBox(width: 70, child: Divider(thickness: 3)),
+                    ])),
+              ),
+              Visibility(
+                  visible: !isMobile,
+                  child: SideMenu(scrollController: _scrollController)),
+              Visibility(
+                  visible: isMobile,
+                  child: TopMenu(scrollController: _scrollController)),
+              Positioned.fill(
+                left: isMobile == true ? 0 : 100,
+                top: isMobile == true ? 80 : 0,
+                child: Align(
+                    alignment: Alignment.centerRight,
+                    child: ScrollablePositionedList.builder(
+                      itemScrollController: _scrollController,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return [
+                          _createSection(context, _createHome(context)),
+                          _createSection(
+                            context,
+                            _createAbout(context),
+                          ),
+                          _createSection(context, ProjectPage()),
+                        ][index];
+                      },
+                    )),
+              ),
+            ],
+          ),
         ));
   }
 }
@@ -95,15 +105,15 @@ _createSection(BuildContext context, Widget content) {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(9.0),
-            gradient: LinearGradient(
-              begin: Alignment(-1.0, 0.0),
-              end: Alignment(1.0, 0.0),
-              colors: GlobalTheme.darkGradient2,
-              stops: [0.0, 1.0],
-            ),
-          ),
+          // decoration: BoxDecoration(
+          //   borderRadius: BorderRadius.circular(9.0),
+          //   gradient: LinearGradient(
+          //     begin: Alignment(-1.0, 0.0),
+          //     end: Alignment(1.0, 0.0),
+          //     colors: GlobalTheme.darkGradient4,
+          //     stops: [0.0, 1.0],
+          //   ),
+          // ),
           child: Center(child: content),
         ),
       ));
