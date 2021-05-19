@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     //cache gif 
     precacheImage(new AssetImage('gif/glitchyhead.gif'), context);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: GlobalTheme.darkTheme,
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget),
