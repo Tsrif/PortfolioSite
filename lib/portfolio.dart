@@ -12,8 +12,7 @@ import 'Globaltheme.dart';
 SizeConfig sizeConfig = SizeConfig.instance;
 
 class PortfolioSite extends StatefulWidget {
-  PortfolioSite({Key key, this.title}) : super(key: key);
-  final String title;
+  PortfolioSite({Key key}) : super(key: key);
 
   @override
   _PortfolioSiteState createState() => _PortfolioSiteState();
@@ -88,7 +87,8 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                             context,
                             _createAbout(context),
                           ),
-                          _createSection(context, ProjectPage()),
+                          _createSection(
+                              context, ProjectPage(isMobile: isMobile)),
                         ][index];
                       },
                     )),
@@ -105,6 +105,7 @@ _createSection(BuildContext context, Widget content) {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
+          //color: GlobalTheme.appBarColor,
           // decoration: BoxDecoration(
           //   borderRadius: BorderRadius.circular(9.0),
           //   gradient: LinearGradient(
@@ -181,7 +182,7 @@ _createHome(BuildContext context) {
 //There's gotta be an easier way to make this happen with not as ugly code
   return SizedBox(
     width: SizeConfig.blockSizeHorizontal * 50,
-    height: SizeConfig.safeBlockVertical * 30,
+    //height: SizeConfig.safeBlockVertical * 80,
     child: (Stack(
       alignment: Alignment.center,
       children: [
@@ -224,16 +225,19 @@ _createHome(BuildContext context) {
                   height: SizeConfig.blockSizeVertical * 10,
                   child: AnimatedTextKit(repeatForever: true, animatedTexts: [
                     RotateAnimatedText('Programmer', textStyle: animatedText),
-                    RotateAnimatedText('Something else',
+                    RotateAnimatedText('something else',
                         textStyle: animatedText),
-                    RotateAnimatedText('uhh', textStyle: animatedText),
-                    RotateAnimatedText('Just gimme a second okay?',
+                    TypewriterAnimatedText('uhhhhhhh',
+                        speed: Duration(milliseconds: 300),
                         textStyle: animatedText),
-                    RotateAnimatedText(
-                      '...',
+                    RotateAnimatedText('just gimme a second okay?',
+                        textStyle: animatedText),
+                    TyperAnimatedText(
+                      '......',
+                      speed: Duration(milliseconds: 300),
                       textStyle: animatedText,
                     ),
-                    RotateAnimatedText('Oh I got it', textStyle: animatedText),
+                    RotateAnimatedText('oh I got it', textStyle: animatedText),
                   ]),
                 )
               ],
@@ -256,7 +260,7 @@ _createAbout(BuildContext context) {
 
   return SizedBox(
     width: SizeConfig.blockSizeHorizontal * 50,
-    height: SizeConfig.blockSizeVertical * 50,
+    height: SizeConfig.blockSizeVertical * 80,
     child: (Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

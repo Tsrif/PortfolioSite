@@ -3,13 +3,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:portfolio_site/project_widget.dart';
 import 'package:portfolio_site/size_config.dart';
 
-const List<StaggeredTile> _staggeredTiles = <StaggeredTile>[
-  StaggeredTile.fit(1),
-  StaggeredTile.fit(2),
-  StaggeredTile.fit(1),
-  StaggeredTile.fit(2)
-];
-
 List<Widget> _tiles = <Widget>[
   ProjectWidget(
     image: Image.asset('image/Burg.png', gaplessPlayback: true),
@@ -47,15 +40,24 @@ List<Widget> _tiles = <Widget>[
 ];
 
 class ProjectPage extends StatelessWidget {
+  final bool isMobile;
+
+  const ProjectPage({Key key, this.isMobile}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    List<StaggeredTile> _staggeredTiles = <StaggeredTile>[
+      StaggeredTile.fit(isMobile == false ? 1 : 3),
+      StaggeredTile.fit(isMobile == false ? 2 : 3),
+      StaggeredTile.fit(isMobile == false ? 1 : 3),
+      StaggeredTile.fit(isMobile == false ? 2 : 3)
+    ];
     //Cache the gifs so they load faster
     precacheImage(new AssetImage('gif/HolidayHellper2.gif'), context);
     precacheImage(new AssetImage('gif/BurgieFlip.gif'), context);
     precacheImage(new AssetImage('gif/RoleUp.gif'), context);
     return SizedBox(
-      width: SizeConfig.blockSizeHorizontal * 80,
-      height: SizeConfig.safeBlockVertical * 80,
+      width: SizeConfig.blockSizeHorizontal * 85,
+      height: double.infinity,
       child: StaggeredGridView.count(
         crossAxisCount: 4,
         staggeredTiles: _staggeredTiles,
