@@ -82,7 +82,8 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                       itemCount: 3,
                       itemBuilder: (context, index) {
                         return [
-                          _createSection(context, _createHome(context)),
+                          _createSection(
+                              context, _createHome(context, isMobile)),
                           _createSection(
                             context,
                             _createAbout(context),
@@ -159,7 +160,7 @@ _createSection(BuildContext context, Widget content) {
 //   );
 // }
 
-_createHome(BuildContext context) {
+_createHome(BuildContext context, bool isMobile) {
   TextStyle headerStyle = TextStyle(
       color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle headerStyle2 = TextStyle(
@@ -186,22 +187,58 @@ _createHome(BuildContext context) {
     child: (Stack(
       alignment: Alignment.center,
       children: [
-        Row(
-          children: [
-            AutoSizeText.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: "Hi, I'm ", style: headerStyle),
-                  TextSpan(text: "Ricky", style: headerStyle2)
-                ],
+        if (isMobile == false)
+          Row(
+            children: [
+              AutoSizeText.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(text: "Hi, I'm ", style: headerStyle),
+                    TextSpan(text: "Ricky", style: headerStyle2)
+                  ],
+                ),
+                maxLines: 1,
               ),
-              maxLines: 1,
+            ],
+          )
+        else
+          Transform.translate(
+            offset: Offset(0, SizeConfig.safeBlockHorizontal * -7),
+            child: Row(
+              children: [
+                Stack(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Transform.translate(
+                      offset: Offset(SizeConfig.safeBlockHorizontal * -0.5,
+                          SizeConfig.safeBlockHorizontal * -2),
+                      child: AutoSizeText.rich(TextSpan(
+                        children: [
+                          TextSpan(text: "Hi, I'm ", style: headerStyle)
+                        ],
+                      )),
+                    ),
+                    Transform.translate(
+                      offset: Offset(SizeConfig.safeBlockHorizontal * -0.5,
+                          SizeConfig.safeBlockHorizontal * 8),
+                      child: AutoSizeText.rich(TextSpan(
+                        children: [
+                          TextSpan(text: "Ricky", style: headerStyle2)
+                        ],
+                      )),
+                    ),
+                  ],
+                )
+              ],
             ),
-          ],
-        ),
+          ),
         Transform.translate(
-          offset: Offset(SizeConfig.safeBlockHorizontal * 0.3,
-              SizeConfig.safeBlockHorizontal * 7),
+          offset: Offset(
+              isMobile == false ? SizeConfig.safeBlockHorizontal * 0.7 : 2,
+              isMobile == false
+                  ? SizeConfig.safeBlockHorizontal * 7
+                  : SizeConfig.safeBlockHorizontal * 9),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -216,28 +253,38 @@ _createHome(BuildContext context) {
           ),
         ),
         Transform.translate(
-            offset: Offset(SizeConfig.safeBlockHorizontal * 4.5,
-                SizeConfig.safeBlockHorizontal * 7),
+            offset: Offset(
+                SizeConfig.safeBlockHorizontal * 4.5,
+                isMobile == false
+                    ? SizeConfig.safeBlockHorizontal * 7
+                    : SizeConfig.safeBlockHorizontal * 9),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: SizeConfig.blockSizeVertical * 10,
                   child: AnimatedTextKit(repeatForever: true, animatedTexts: [
-                    RotateAnimatedText('Programmer', textStyle: animatedText),
-                    RotateAnimatedText('something else',
-                        textStyle: animatedText),
-                    TypewriterAnimatedText('uhhhhhhh',
-                        speed: Duration(milliseconds: 300),
-                        textStyle: animatedText),
+                    RotateAnimatedText('Programmer',
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 4000)),
+                    RotateAnimatedText('Musician',
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 4000)),
+                    RotateAnimatedText('Those are really the main things',
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 4000)),
+                    RotateAnimatedText('uhhhhhhh',
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 2000)),
                     RotateAnimatedText('just gimme a second okay?',
-                        textStyle: animatedText),
-                    TyperAnimatedText(
-                      '......',
-                      speed: Duration(milliseconds: 300),
-                      textStyle: animatedText,
-                    ),
-                    RotateAnimatedText('oh I got it', textStyle: animatedText),
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 2000)),
+                    RotateAnimatedText('......',
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 2000)),
+                    RotateAnimatedText('oh I got it',
+                        textStyle: animatedText,
+                        duration: Duration(milliseconds: 2000)),
                   ]),
                 )
               ],
