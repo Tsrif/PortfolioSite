@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //cache gif
-    precacheImage(new AssetImage('gif/glitchyhead.gif'), context);
+    precacheImage(new AssetImage('gif/smallGlitchyHead.gif'), context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: GlobalTheme.darkTheme,
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       home: Splash(
           miliseconds: 700,
           navigateAfterSeconds: PortfolioSite(),
-          image: Image.asset('gif/glitchyhead.gif'),
+          image: Image.asset('gif/smallGlitchyHead.gif'),
           backgroundColor: Colors.black,
           photoSize: 300.0),
     );
