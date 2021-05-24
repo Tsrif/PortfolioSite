@@ -75,10 +75,6 @@ class ProjectPage extends StatelessWidget {
     TextStyle headerStyle2 = TextStyle(
         color: GlobalTheme.primaryPurple,
         fontSize: SizeConfig.safeBlockHorizontal * 11);
-    //Cache the gifs so they load faster
-    precacheImage(new AssetImage('gif/HolidayHellper.gif'), context);
-    precacheImage(new AssetImage('gif/BurgieFlip.gif'), context);
-    precacheImage(new AssetImage('gif/RoleUp.gif'), context);
     return Stack(
       children: [
         Transform.translate(
