@@ -83,13 +83,15 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                       itemBuilder: (context, index) {
                         return [
                           _createSection(
-                              context, _createHome(context, isMobile)),
+                              context, _createHome(context, isMobile),
+                              height: SizeConfig.blockSizeVertical * 100),
+                          _createSection(context, _createAbout(context),
+                              height: SizeConfig.blockSizeVertical * 100),
                           _createSection(
-                            context,
-                            _createAbout(context),
-                          ),
-                          _createSection(
-                              context, ProjectPage(isMobile: isMobile)),
+                              context, ProjectPage(isMobile: isMobile),
+                              height: isMobile == false
+                                  ? SizeConfig.blockSizeVertical * 150
+                                  : null),
                         ][index];
                       },
                     )),
@@ -100,9 +102,9 @@ class _PortfolioSiteState extends State<PortfolioSite> {
   }
 }
 
-_createSection(BuildContext context, Widget content) {
+_createSection(BuildContext context, Widget content, {double height}) {
   return SizedBox(
-      height: SizeConfig.blockSizeVertical * 100,
+      height: height,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -162,22 +164,33 @@ _createSection(BuildContext context, Widget content) {
 
 _createHome(BuildContext context, bool isMobile) {
   TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
+      color: Colors.white,
+      fontSize: isMobile == false
+          ? SizeConfig.safeBlockHorizontal * 11
+          : SizeConfig.safeBlockHorizontal * 13);
   TextStyle headerStyle2 = TextStyle(
       color: GlobalTheme.primaryPurple,
-      fontSize: SizeConfig.safeBlockHorizontal * 11);
+      fontSize: isMobile == false
+          ? SizeConfig.safeBlockHorizontal * 11
+          : SizeConfig.safeBlockHorizontal * 13);
   TextStyle bodyStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontStyle: FontStyle.italic,
-      fontSize: SizeConfig.safeBlockHorizontal * 3.8);
+      fontSize: isMobile == false
+          ? SizeConfig.safeBlockHorizontal * 3.8
+          : SizeConfig.safeBlockHorizontal * 5);
   TextStyle animatedText = TextStyle(
       color: GlobalTheme.primaryPurple,
       fontStyle: FontStyle.italic,
-      fontSize: SizeConfig.safeBlockHorizontal * 3.8);
+      fontSize: isMobile == false
+          ? SizeConfig.safeBlockHorizontal * 3.8
+          : SizeConfig.safeBlockHorizontal * 5);
   TextStyle barStyle = TextStyle(
       color: GlobalTheme.mutedWhite,
       fontWeight: FontWeight.bold,
-      fontSize: SizeConfig.safeBlockHorizontal * 3.8);
+      fontSize: isMobile == false
+          ? SizeConfig.safeBlockHorizontal * 3.8
+          : SizeConfig.safeBlockHorizontal * 5);
 
 //This whole thing is confusing and hard to look at
 //There's gotta be an easier way to make this happen with not as ugly code
@@ -254,7 +267,9 @@ _createHome(BuildContext context, bool isMobile) {
         ),
         Transform.translate(
             offset: Offset(
-                SizeConfig.safeBlockHorizontal * 4.5,
+                isMobile == false
+                    ? SizeConfig.safeBlockHorizontal * 4.5
+                    : SizeConfig.safeBlockHorizontal * 5.5,
                 isMobile == false
                     ? SizeConfig.safeBlockHorizontal * 7
                     : SizeConfig.safeBlockHorizontal * 9),
@@ -264,27 +279,27 @@ _createHome(BuildContext context, bool isMobile) {
                 SizedBox(
                   height: SizeConfig.blockSizeVertical * 10,
                   child: AnimatedTextKit(repeatForever: true, animatedTexts: [
-                    RotateAnimatedText('Programmer',
+                    RotateAnimatedText(' Programmer',
                         textStyle: animatedText,
-                        duration: Duration(milliseconds: 4000)),
-                    RotateAnimatedText('Musician',
+                        duration: Duration(milliseconds: 2500)),
+                    RotateAnimatedText(' Musician',
                         textStyle: animatedText,
-                        duration: Duration(milliseconds: 4000)),
-                    RotateAnimatedText('Those are really the main things',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 4000)),
-                    RotateAnimatedText('uhhhhhhh',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 2000)),
-                    RotateAnimatedText('just gimme a second okay?',
+                        duration: Duration(milliseconds: 2500)),
+                    // RotateAnimatedText('Those are really the main things',
+                    //     textStyle: animatedText,
+                    //     duration: Duration(milliseconds: 2500)),
+                    RotateAnimatedText(' uhhhhhhh',
                         textStyle: animatedText,
                         duration: Duration(milliseconds: 2000)),
-                    RotateAnimatedText('......',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 2000)),
-                    RotateAnimatedText('oh I got it',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 2000)),
+                    // RotateAnimatedText('just gimme a second okay?',
+                    //     textStyle: animatedText,
+                    //     duration: Duration(milliseconds: 2000)),
+                    // RotateAnimatedText('......',
+                    //     textStyle: animatedText,
+                    //     duration: Duration(milliseconds: 2000)),
+                    // RotateAnimatedText('oh I got it',
+                    //     textStyle: animatedText,
+                    //     duration: Duration(milliseconds: 2000)),
                   ]),
                 )
               ],

@@ -11,6 +11,8 @@ class ProjectWidget extends StatefulWidget {
   final String projectName;
   final String projectDescription;
   final String projectLink;
+  final String linkText;
+  final bool isMobile;
 
   const ProjectWidget(
       {Key key,
@@ -18,7 +20,9 @@ class ProjectWidget extends StatefulWidget {
       this.replaceImageOnHover,
       this.projectName = 'Name Of Project',
       this.projectDescription = 'Description Of Project',
-      this.projectLink = 'https://www.google.com/'})
+      this.projectLink = 'https://www.google.com/',
+      this.isMobile,
+      this.linkText = 'Source'})
       : super(key: key);
   @override
   _ProjectWidgetState createState() => _ProjectWidgetState();
@@ -140,9 +144,11 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                                 TextSpan(
                                     text: widget.projectName,
                                     style: TextStyle(
-                                        fontSize:
-                                            SizeConfig.safeBlockHorizontal *
-                                                2.5,
+                                        fontSize: widget.isMobile == false
+                                            ? SizeConfig.safeBlockHorizontal *
+                                                2.5
+                                            : SizeConfig.safeBlockHorizontal *
+                                                10,
                                         color: showDescription == true
                                             ? Colors.white.withOpacity(0.8)
                                             : Colors.white.withOpacity(0.6))),
@@ -155,14 +161,20 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                               Align(
                                 alignment: Alignment.center,
                                 child: SizedBox(
-                                  width: SizeConfig.blockSizeHorizontal * 20,
+                                  width: widget.isMobile == false
+                                      ? SizeConfig.blockSizeHorizontal * 20
+                                      : SizeConfig.blockSizeHorizontal * 80,
                                   child: AutoSizeText.rich(
                                       TextSpan(
                                           text: widget.projectDescription,
                                           style: TextStyle(
-                                              fontSize: SizeConfig
-                                                      .safeBlockHorizontal *
-                                                  1.5,
+                                              fontSize: widget.isMobile == false
+                                                  ? SizeConfig
+                                                          .safeBlockHorizontal *
+                                                      1.5
+                                                  : SizeConfig
+                                                          .safeBlockHorizontal *
+                                                      5,
                                               color: Colors.white)),
                                       wrapWords: true),
                                 ),
@@ -200,7 +212,7 @@ class _ProjectWidgetState extends State<ProjectWidget> with AnimationMixin {
                                       child: Center(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: AutoSizeText('Link',
+                                          child: AutoSizeText(widget.linkText,
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 22)),
