@@ -91,7 +91,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                               context, ProjectPage(isMobile: isMobile),
                               height: isMobile == false
                                   ? SizeConfig.blockSizeVertical * 150
-                                  : null),
+                                  : SizeConfig.blockSizeVertical * 280),
                         ][index];
                       },
                     )),
