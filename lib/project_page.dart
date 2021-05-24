@@ -37,7 +37,7 @@ class ProjectPage extends StatelessWidget {
           height: isMobile == false ? 630 : null,
         ),
         replaceImageOnHover: Image.asset(
-          'gif/HolidayHellper2.gif',
+          'gif/HolidayHellper.gif',
           gaplessPlayback: true,
           height: isMobile == false ? 630 : null,
         ),
@@ -76,7 +76,7 @@ class ProjectPage extends StatelessWidget {
         color: GlobalTheme.primaryPurple,
         fontSize: SizeConfig.safeBlockHorizontal * 11);
     //Cache the gifs so they load faster
-    precacheImage(new AssetImage('gif/HolidayHellper2.gif'), context);
+    precacheImage(new AssetImage('gif/HolidayHellper.gif'), context);
     precacheImage(new AssetImage('gif/BurgieFlip.gif'), context);
     precacheImage(new AssetImage('gif/RoleUp.gif'), context);
     return Stack(
