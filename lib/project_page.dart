@@ -15,7 +15,7 @@ class ProjectPage extends StatelessWidget {
     List<StaggeredTile> _staggeredTiles = <StaggeredTile>[
       StaggeredTile.fit(1),
       StaggeredTile.fit(2),
-      StaggeredTile.fit(1),
+      //StaggeredTile.fit(1),
       StaggeredTile.fit(2)
     ];
     List<Widget> _tiles = <Widget>[
@@ -48,17 +48,17 @@ class ProjectPage extends StatelessWidget {
         linkText: 'Source Code',
         isMobile: isMobile,
       ),
-      ProjectWidget(
-        image: Image.asset('image/RoleUp.png', gaplessPlayback: true),
-        replaceImageOnHover:
-            Image.asset('gif/RoleUp.gif', gaplessPlayback: true),
-        projectName: 'RoleUp',
-        projectDescription:
-            "Currently in development. Character Creator App for Pathfinder, D&D, and D20 Systems.",
-        projectLink: "https://play.google.com/store/apps/details?id=com.RoleUp",
-        linkText: 'Google Play Store',
-        isMobile: isMobile,
-      ),
+      // ProjectWidget(
+      //   image: Image.asset('image/RoleUp.png', gaplessPlayback: true),
+      //   replaceImageOnHover:
+      //       Image.asset('gif/RoleUp.gif', gaplessPlayback: true),
+      //   projectName: 'RoleUp',
+      //   projectDescription:
+      //       "Currently in development. Character Creator App for Pathfinder, D&D, and D20 Systems.",
+      //   projectLink: "https://play.google.com/store/apps/details?id=com.RoleUp",
+      //   linkText: 'Google Play Store',
+      //   isMobile: isMobile,
+      // ),
       ProjectWidget(
         image: Image.asset('image/Site.png', gaplessPlayback: true),
         replaceImageOnHover:
