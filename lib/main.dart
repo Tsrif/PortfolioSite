@@ -12,8 +12,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //cache gif
+    //cache all the gifs on inital load
     precacheImage(new AssetImage('gif/smallGlitchyHead.gif'), context);
+    precacheImage(new AssetImage('gif/HolidayHellper.gif'), context);
+    precacheImage(new AssetImage('gif/BurgieFlip.gif'), context);
+    precacheImage(new AssetImage('gif/RoleUp.gif'), context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: GlobalTheme.darkTheme,
