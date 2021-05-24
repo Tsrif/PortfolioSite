@@ -15,7 +15,7 @@ class ProjectPage extends StatelessWidget {
     List<StaggeredTile> _staggeredTiles = <StaggeredTile>[
       StaggeredTile.fit(1),
       StaggeredTile.fit(2),
-      StaggeredTile.fit(1),
+      //StaggeredTile.fit(1),
       StaggeredTile.fit(2)
     ];
     List<Widget> _tiles = <Widget>[
@@ -48,7 +48,6 @@ class ProjectPage extends StatelessWidget {
         linkText: 'Source Code',
         isMobile: isMobile,
       ),
-      Image.asset('image/RoleUp.png', gaplessPlayback: true),
       // ProjectWidget(
       //   image: Image.asset('image/RoleUp.png', gaplessPlayback: true),
       //   replaceImageOnHover:
