@@ -49,7 +49,7 @@ class ProjectPage extends StatelessWidget {
         isMobile: isMobile,
       ),
       ProjectWidget(
-        image:  Image.asset('image/RoleUp-Smaller.png', gaplessPlayback: true),
+        image: Image.asset('image/RoleUp-Smaller.png', gaplessPlayback: true),
         replaceImageOnHover:
             Image.asset('gif/RoleUp-Smaller.gif', gaplessPlayback: true),
         projectName: 'RoleUp',
@@ -119,17 +119,14 @@ class ProjectPage extends StatelessWidget {
             ),
           )
         else
-          Padding(
-            padding: EdgeInsets.only(top: SizeConfig.safeBlockHorizontal * 16),
-            child: Column(
-              children: _tiles.map((e) {
+          ListView.builder(
+              itemCount: _tiles.length,
+              itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: e,
+                  child: _tiles[index],
                 );
-              }).toList(),
-            ),
-          )
+              })
       ],
     );
   }
