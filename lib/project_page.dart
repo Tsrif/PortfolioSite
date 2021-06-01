@@ -49,9 +49,9 @@ class ProjectPage extends StatelessWidget {
         isMobile: isMobile,
       ),
       ProjectWidget(
-        image:  Image.asset('gif/RoleUp.gif', gaplessPlayback: true),
+        image:  Image.asset('image/RoleUp-Smaller.png', gaplessPlayback: true),
         replaceImageOnHover:
-            Image.asset('gif/RoleUp.gif', gaplessPlayback: true),
+            Image.asset('gif/RoleUp-Smaller.gif', gaplessPlayback: true),
         projectName: 'RoleUp',
         projectDescription:
             "Currently in development. Character Creator App for Pathfinder, D&D, and D20 Systems.",

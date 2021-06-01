@@ -59,10 +59,12 @@ flutter:
     - assets/gif/BurgieFlip.gif
     - assets/gif/HolidayHellper.gif
     - assets/gif/RoleUp.gif
+    - assets/gif/RoleUp-Smaller.gif
     - assets/image/mehead.png
     - assets/image/Burg.png
     - assets/image/HolidayHellper.png
     - assets/image/RoleUp.png
+    - assets/image/RoleUp-Smaller.png
     - assets/image/Site.png
 
 

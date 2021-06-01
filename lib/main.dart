@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     //precacheImage(new AssetImage('gif/smallGlitchyHead.gif'), context);
     precacheImage(new AssetImage('gif/HolidayHellper.gif'), context);
     precacheImage(new AssetImage('gif/BurgieFlip.gif'), context);
-    precacheImage(new AssetImage('gif/RoleUp.gif'), context);
+    precacheImage(new AssetImage('gif/RoleUp-Smaller.gif'), context);
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: GlobalTheme.darkTheme,
