@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:portfolio_site/project_widget.dart';
 import 'package:portfolio_site/size_config.dart';
@@ -120,6 +121,9 @@ class ProjectPage extends StatelessWidget {
           )
         else
           ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              physics: ClampingScrollPhysics(),
               itemCount: _tiles.length,
               itemBuilder: (context, index) {
                 return Padding(
