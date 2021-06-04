@@ -28,7 +28,7 @@ class TopMenu extends StatelessWidget {
               child: AutoSizeText('Home',
                   textAlign: TextAlign.right,
                   style:
-                      TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
+                      TextStyle(fontSize: 28, color: GlobalTheme.secondaryColor)),
               onTap: () {
                 _scrollController.scrollTo(
                     index: 0,
@@ -40,7 +40,7 @@ class TopMenu extends StatelessWidget {
               child: AutoSizeText('About',
                   textAlign: TextAlign.right,
                   style:
-                      TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
+                      TextStyle(fontSize: 28, color: GlobalTheme.secondaryColor)),
               onTap: () {
                 _scrollController.scrollTo(
                     index: 1,
@@ -53,7 +53,7 @@ class TopMenu extends StatelessWidget {
                   textAlign: TextAlign.right,
                   wrapWords: false,
                   style:
-                      TextStyle(fontSize: 25, color: GlobalTheme.mutedWhite)),
+                      TextStyle(fontSize: 25, color: GlobalTheme.secondaryColor)),
               onTap: () {
                 _scrollController.scrollTo(
                     index: 2,

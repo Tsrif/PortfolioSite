@@ -28,11 +28,11 @@ class SideMenu extends StatelessWidget {
             //       SizedBox(height: 20),
             //       AutoSizeText('Ricky',
             //           style: TextStyle(
-            //               fontSize: 22, color: GlobalTheme.primaryPurple)),
+            //               fontSize: 22, color: GlobalTheme.primaryColor)),
             //       AutoSizeText('Rivera',
             //           style: TextStyle(
-            //               fontSize: 22, color: GlobalTheme.mutedWhite)),
-            //       SizedBox(width: 70, child: Divider(thickness: 3)),
+            //               fontSize: 22, color: GlobalTheme.secondaryColor)),
+            //       SizedBox(width: 70, child: Divider(thickness: 3, color: GlobalTheme.dividerColor)),
             //     ])),
             SizedBox(
               height: SizeConfig.blockSizeVertical * 30,
@@ -43,8 +43,8 @@ class SideMenu extends StatelessWidget {
                 AnimatedButton(
                   child: AutoSizeText('Home',
                       textAlign: TextAlign.right,
-                      style:
-                          TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
+                      style: TextStyle(
+                          fontSize: 28, color: GlobalTheme.secondaryColor)),
                   onTap: () {
                     _scrollController.scrollTo(
                         index: 0,
@@ -56,8 +56,8 @@ class SideMenu extends StatelessWidget {
                 AnimatedButton(
                   child: AutoSizeText('About',
                       textAlign: TextAlign.right,
-                      style:
-                          TextStyle(fontSize: 28, color: GlobalTheme.mutedWhite)),
+                      style: TextStyle(
+                          fontSize: 28, color: GlobalTheme.secondaryColor)),
                   onTap: () {
                     _scrollController.scrollTo(
                         index: 1,
@@ -70,8 +70,8 @@ class SideMenu extends StatelessWidget {
                   child: AutoSizeText('Projects',
                       textAlign: TextAlign.right,
                       wrapWords: false,
-                      style:
-                          TextStyle(fontSize: 25, color: GlobalTheme.mutedWhite)),
+                      style: TextStyle(
+                          fontSize: 25, color: GlobalTheme.secondaryColor)),
                   onTap: () {
                     _scrollController.scrollTo(
                         index: 2,

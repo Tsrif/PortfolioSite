@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_site/animated_button.dart';
 import 'package:portfolio_site/project_page.dart';
 import 'package:portfolio_site/side_menu.dart';
 import 'package:portfolio_site/size_config.dart';
@@ -21,6 +22,7 @@ class PortfolioSite extends StatefulWidget {
 class _PortfolioSiteState extends State<PortfolioSite> {
   ItemScrollController _scrollController = ItemScrollController();
   bool isMobile = false;
+  int tapCount = 0;
 
   @override
   @override
@@ -44,27 +46,40 @@ class _PortfolioSiteState extends State<PortfolioSite> {
             gradient: LinearGradient(
               begin: Alignment(-1.0, 0.0),
               end: Alignment(1.0, 0.0),
-              colors: GlobalTheme.darkGradient4,
+              colors: GlobalTheme.primaryGradient,
               stops: [0.0, 1.0],
             ),
           ),
           child: Stack(
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                    padding: EdgeInsets.only(
-                        bottom: SizeConfig.blockSizeVertical * 20, left: 20),
-                    child: Column(children: [
-                      SizedBox(height: 20),
-                      AutoSizeText('Ricky',
-                          style: TextStyle(
-                              fontSize: 22, color: GlobalTheme.primaryPurple)),
-                      AutoSizeText('Rivera',
-                          style: TextStyle(
-                              fontSize: 22, color: GlobalTheme.mutedWhite)),
-                      SizedBox(width: 70, child: Divider(thickness: 3)),
-                    ])),
+              AnimatedButton(
+                cornerDecoration: false,
+                onTap: () {
+                  setState(() {
+                    tapCount++;
+                    GlobalTheme.setRandomTheme(colorTheme: tapCount % 5);
+                  });
+                },
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: SizeConfig.blockSizeVertical * 20, left: 20),
+                      child: Column(children: [
+                        SizedBox(height: 20),
+                        AutoSizeText('Ricky',
+                            style: TextStyle(
+                                fontSize: 22, color: GlobalTheme.primaryColor)),
+                        AutoSizeText('Rivera',
+                            style: TextStyle(
+                                fontSize: 22,
+                                color: GlobalTheme.secondaryColor)),
+                        SizedBox(
+                            width: 70,
+                            child: Divider(
+                                thickness: 3, color: GlobalTheme.dividerColor)),
+                      ])),
+                ),
               ),
               Visibility(
                   visible: !isMobile,
@@ -169,24 +184,24 @@ _createHome(BuildContext context, bool isMobile) {
           ? SizeConfig.safeBlockHorizontal * 11
           : SizeConfig.safeBlockHorizontal * 13);
   TextStyle headerStyle2 = TextStyle(
-      color: GlobalTheme.primaryPurple,
+      color: GlobalTheme.primaryColor,
       fontSize: isMobile == false
           ? SizeConfig.safeBlockHorizontal * 11
           : SizeConfig.safeBlockHorizontal * 13);
   TextStyle bodyStyle = TextStyle(
-      color: GlobalTheme.mutedWhite,
+      color: GlobalTheme.secondaryColor,
       fontStyle: FontStyle.italic,
       fontSize: isMobile == false
           ? SizeConfig.safeBlockHorizontal * 3.8
           : SizeConfig.safeBlockHorizontal * 5);
   TextStyle animatedText = TextStyle(
-      color: GlobalTheme.primaryPurple,
+      color: GlobalTheme.primaryColor,
       fontStyle: FontStyle.italic,
       fontSize: isMobile == false
           ? SizeConfig.safeBlockHorizontal * 3.8
           : SizeConfig.safeBlockHorizontal * 5);
   TextStyle barStyle = TextStyle(
-      color: GlobalTheme.mutedWhite,
+      color: GlobalTheme.secondaryColor,
       fontWeight: FontWeight.bold,
       fontSize: isMobile == false
           ? SizeConfig.safeBlockHorizontal * 3.8
@@ -313,10 +328,10 @@ _createAbout(BuildContext context) {
   TextStyle headerStyle = TextStyle(
       color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle headerStyle2 = TextStyle(
-      color: GlobalTheme.primaryPurple,
+      color: GlobalTheme.primaryColor,
       fontSize: SizeConfig.safeBlockHorizontal * 11);
   TextStyle bodyStyle = TextStyle(
-      color: GlobalTheme.mutedWhite,
+      color: GlobalTheme.secondaryColor,
       fontSize: SizeConfig.safeBlockHorizontal * 7,
       fontStyle: FontStyle.italic);
 
@@ -341,7 +356,7 @@ _createAbout(BuildContext context) {
           padding: const EdgeInsets.only(bottom: 8.0),
           child: SizedBox(
               width: SizeConfig.blockSizeHorizontal * 50,
-              child: Divider(thickness: 3)),
+              child: Divider(thickness: 3, color: GlobalTheme.dividerColor)),
         ),
         Expanded(
           child: AutoSizeText.rich(

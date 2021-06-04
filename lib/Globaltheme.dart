@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -56,7 +57,9 @@ class GlobalTheme {
     textTheme: GoogleFonts.cabinCondensedTextTheme(),
   );
 
-  static Color primaryColor = Color(0XFF171618);
+  //static Color primaryColor = Color(0XFF171618);
+  static Color primaryColor = Color(0XFF7C32CA);
+  static Color dividerColor = Color(0XFF323134);
   static Color primaryDarkPurple = Color(0xFF170e13);
   static Color lightGray = Color(0XFF4C4C51);
   static Color appBarColor = Color(0XFF2D2D31);
@@ -65,7 +68,7 @@ class GlobalTheme {
   static Color primaryYellow = Color(0XFFF2BB16);
   static Color primaryRed = Color(0XFFF25749);
   static Color primaryPurple = Color(0XFF7C32CA);
-  static Color mutedWhite = Color(0XFFB6B6CA);
+  static Color secondaryColor = Color(0XFFB6B6CA);
   static List<Color> darkGradient = [Color(0xFF2E2F3C), Color(0xFF38384A)];
   static List<Color> darkGradient2 = [
     Color(0xFF170e13).withOpacity(0.2),
@@ -75,7 +78,8 @@ class GlobalTheme {
     Color(0xFFad1deb).withOpacity(0.2),
     Color(0xFF6e72fc).withOpacity(0.2)
   ];
-  static List<Color> darkGradient4 = [Color(0xFF161418), Color(0xFF2C2D40)];
+  static List<Color> primaryGradient = [Color(0xFF161418), Color(0xFF2C2D40)];
+
   static List<List<Color>> gradients = [
     [const Color(0xffB15DFF), const Color(0xff72DEFF)],
     [const Color(0xff36d6aa), const Color(0xff2ec9f2)],
@@ -88,4 +92,68 @@ class GlobalTheme {
     [const Color(0xff333333), const Color(0xffdd1818)],
     [const Color(0xffFC466B), const Color(0xff3F5EFB)],
   ];
+
+  static void setRandomTheme({int colorTheme}) {
+    var rng = new Random();
+    int randomNumber;
+    if (colorTheme == null) {
+      randomNumber = rng.nextInt(5);
+    } else {
+      randomNumber = colorTheme;
+    }
+    switch (randomNumber) {
+      case 0:
+        setPurpleTheme();
+        break;
+      case 1:
+        setBlueTheme();
+        break;
+      case 2:
+        setRedTheme();
+        break;
+      case 3:
+        setPinkTheme();
+        break;
+      case 4:
+        setOrangeTheme();
+        break;
+      default:
+    }
+  }
+
+  static void setPurpleTheme() {
+    primaryColor = primaryPurple;
+    secondaryColor = Color(0XFFB6B6CA);
+    dividerColor = Color(0XFF323134);
+    primaryGradient = [Color(0xFF161418), Color(0xFF2C2D40)];
+  }
+
+  static void setBlueTheme() {
+    primaryColor = primaryBlue;
+    secondaryColor = Color(0XFFB6B6CA);
+    dividerColor = Color(0XFF323134);
+    primaryGradient = [Color(0xFF161418), const Color(0XFF335c81)];
+  }
+
+  static void setRedTheme() {
+    primaryColor = Colors.red; 
+    secondaryColor = Color(0XFFB6B6CA);
+    dividerColor = Color(0XFF323134);
+    primaryGradient = [Color(0xFF161418), const Color(0XFFc74150)];
+  }
+
+  static void setPinkTheme() {
+    primaryColor = Color(0XFFfe7bb0);
+    secondaryColor = Color(0XFF707084);
+    dividerColor = Colors.black.withOpacity(0.3);
+    primaryGradient = [Color(0xFF7ee8fa), const Color(0XFFeec0c6)];
+  }
+
+  static void setOrangeTheme() {
+    //EE7B30
+    primaryColor = Color(0xFFEE7B30);
+    secondaryColor = Color(0XFFB6B6CA);
+    dividerColor = Color(0XFF323134);
+    primaryGradient = [Color(0xFF161418), Color(0xFF2b2e59)];
+  }
 }

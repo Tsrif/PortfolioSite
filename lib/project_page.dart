@@ -74,7 +74,7 @@ class ProjectPage extends StatelessWidget {
     TextStyle headerStyle = TextStyle(
         color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
     TextStyle headerStyle2 = TextStyle(
-        color: GlobalTheme.primaryPurple,
+        color: GlobalTheme.primaryColor,
         fontSize: SizeConfig.safeBlockHorizontal * 11);
     return Stack(
       children: [
@@ -101,7 +101,7 @@ class ProjectPage extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: SizedBox(
                       width: SizeConfig.blockSizeHorizontal * 50,
-                      child: Divider(thickness: 3)),
+                      child: Divider(thickness: 3, color: GlobalTheme.dividerColor)),
                 ),
               ],
             )),
