@@ -300,21 +300,9 @@ _createHome(BuildContext context, bool isMobile) {
                     RotateAnimatedText(' Musician',
                         textStyle: animatedText,
                         duration: Duration(milliseconds: 2500)),
-                    // RotateAnimatedText('Those are really the main things',
-                    //     textStyle: animatedText,
-                    //     duration: Duration(milliseconds: 2500)),
-                    RotateAnimatedText(' uhhhhhhh',
+                    RotateAnimatedText(' Cat Lover',
                         textStyle: animatedText,
                         duration: Duration(milliseconds: 2000)),
-                    // RotateAnimatedText('just gimme a second okay?',
-                    //     textStyle: animatedText,
-                    //     duration: Duration(milliseconds: 2000)),
-                    // RotateAnimatedText('......',
-                    //     textStyle: animatedText,
-                    //     duration: Duration(milliseconds: 2000)),
-                    // RotateAnimatedText('oh I got it',
-                    //     textStyle: animatedText,
-                    //     duration: Duration(milliseconds: 2000)),
                   ]),
                 )
               ],
@@ -360,10 +348,20 @@ _createAbout(BuildContext context) {
         ),
         Expanded(
           child: AutoSizeText.rich(
-              TextSpan(
-                  text:
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-                  style: bodyStyle),
+              TextSpan(children: [
+                TextSpan(
+                    text:
+                        "Hi, I'm Ricky, a full-stack software engineer with a passion for creating experiences through programming. In college, I discovered that I loved working on video games. There are so many skills involved and there's just this certain kind of beauty in all of the complexities of it. This love later extended towards creating UIs and in general trying to create a great experience for users. I've found the best use of my skills and creativity to be in front-end development, but I'm not afraid to take on any lower-level back-end work! I've tackled projects using a myriad of languages including C, Ruby, React, Flutter ( my current favorite language), C#, PHP, and more! I certainly consider myself"),
+                TextSpan(
+                    text:
+                        ' agile ', style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(
+                    text:
+                        '''and a quick learner. 
+
+
+When I'm not programming, you can find me hanging out with my cat, working on music, or just kicking back and playing some video games. ''')
+              ], style: bodyStyle),
               minFontSize: 0,
               stepGranularity: 0.1,
               wrapWords: true),
