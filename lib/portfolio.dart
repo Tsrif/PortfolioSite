@@ -292,17 +292,23 @@ _createHome(BuildContext context, bool isMobile) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: SizeConfig.blockSizeVertical * 10,
+                  //height: SizeConfig.blockSizeVertical * 10,
                   child: AnimatedTextKit(repeatForever: true, animatedTexts: [
-                    RotateAnimatedText(' Programmer',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 2500)),
-                    RotateAnimatedText(' Musician',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 2500)),
-                    RotateAnimatedText(' Cat Lover',
-                        textStyle: animatedText,
-                        duration: Duration(milliseconds: 2000)),
+                    TypewriterAnimatedText(
+                      ' Programmer',
+                      textStyle: animatedText,
+                      //duration: Duration(milliseconds: 2500)
+                    ),
+                    TypewriterAnimatedText(
+                      ' Musician',
+                      textStyle: animatedText,
+                      //duration: Duration(milliseconds: 2500)
+                    ),
+                    TypewriterAnimatedText(
+                      ' Cat Lover',
+                      textStyle: animatedText,
+                      //duration: Duration(milliseconds: 2000)
+                    ),
                   ]),
                 )
               ],
@@ -353,11 +359,9 @@ _createAbout(BuildContext context) {
                     text:
                         "Hi, I'm Ricky, a full-stack software engineer with a passion for creating experiences through programming. In college, I discovered that I loved working on video games. There are so many skills involved and there's just this certain kind of beauty in all of the complexities of it. This love later extended towards creating UIs and in general trying to create a great experience for users. I've found the best use of my skills and creativity to be in front-end development, but I'm not afraid to take on any lower-level back-end work! I've tackled projects using a myriad of languages including C, Ruby, React, Flutter ( my current favorite language), C#, PHP, and more! I certainly consider myself"),
                 TextSpan(
-                    text:
-                        ' agile ', style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(
-                    text:
-                        '''and a quick learner. 
+                    text: ' agile ',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                TextSpan(text: '''and a quick learner. 
 
 
 When I'm not programming, you can find me hanging out with my cat, working on music, or just kicking back and playing some video games. ''')
