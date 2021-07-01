@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_site/Globaltheme.dart';
-import 'package:portfolio_site/animated_button.dart';
-import 'package:portfolio_site/size_config.dart';
+import 'package:portfolio_site/Utility/Globaltheme.dart';
+import 'package:portfolio_site/Widgets/animated_button.dart';
+import 'package:portfolio_site/Utility/size_config.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class TopMenu extends StatelessWidget {

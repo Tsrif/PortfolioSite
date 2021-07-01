@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_site/portfolio.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'splash.dart';
+import 'Widgets/splash.dart';
 
-import 'Globaltheme.dart';
+import 'Utility/Globaltheme.dart';
 
 void main() {
   runApp(MyApp());

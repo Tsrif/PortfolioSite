@@ -3,7 +3,7 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 import 'corner_decoration.dart';
 
-import 'Globaltheme.dart';
+import '../Utility/Globaltheme.dart';
 
 class AnimatedButton extends StatefulWidget {
   final Widget child;

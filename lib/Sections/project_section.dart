@@ -2,15 +2,15 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:portfolio_site/project_widget.dart';
-import 'package:portfolio_site/size_config.dart';
+import 'package:portfolio_site/Widgets/project_widget.dart';
+import 'package:portfolio_site/Utility/size_config.dart';
 
-import 'Globaltheme.dart';
+import '../Utility/Globaltheme.dart';
 
-class ProjectPage extends StatelessWidget {
+class ProjectSection extends StatelessWidget {
   final bool isMobile;
 
-  const ProjectPage({Key key, this.isMobile}) : super(key: key);
+  const ProjectSection({Key key, this.isMobile}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     List<StaggeredTile> _staggeredTiles = <StaggeredTile>[

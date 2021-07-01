@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_site/Globaltheme.dart';
-import 'package:portfolio_site/animated_button.dart';
-import 'package:portfolio_site/size_config.dart';
+import 'package:portfolio_site/Utility/Globaltheme.dart';
+import 'package:portfolio_site/Widgets/animated_button.dart';
+import 'package:portfolio_site/Utility/size_config.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SideMenu extends StatelessWidget {
@@ -79,6 +79,19 @@ class SideMenu extends StatelessWidget {
                         curve: Curves.bounceIn.flipped);
                   },
                 ),
+                AnimatedButton(
+                  child: AutoSizeText('Contact',
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontSize: 28, color: GlobalTheme.secondaryColor)),
+                  onTap: () {
+                    _scrollController.scrollTo(
+                        index: 3,
+                        duration: Duration(milliseconds: 1700),
+                        curve: Curves.bounceIn.flipped);
+                  },
+                ),
+                SizedBox(height: 10),
               ],
             )
           ],

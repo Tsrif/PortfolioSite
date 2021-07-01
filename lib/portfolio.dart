@@ -1,14 +1,16 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio_site/animated_button.dart';
-import 'package:portfolio_site/project_page.dart';
-import 'package:portfolio_site/side_menu.dart';
-import 'package:portfolio_site/size_config.dart';
-import 'package:portfolio_site/top_menu.dart';
+import 'package:portfolio_site/Sections/about_section.dart';
+import 'package:portfolio_site/Sections/contact_section.dart';
+import 'package:portfolio_site/Sections/home_section.dart';
+import 'package:portfolio_site/Widgets/animated_button.dart';
+import 'package:portfolio_site/Sections/project_section.dart';
+import 'package:portfolio_site/Widgets/side_menu.dart';
+import 'package:portfolio_site/Utility/size_config.dart';
+import 'package:portfolio_site/Widgets/top_menu.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'Globaltheme.dart';
+import 'Utility/Globaltheme.dart';
 
 SizeConfig sizeConfig = SizeConfig.instance;
 
@@ -94,19 +96,21 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                     alignment: Alignment.centerRight,
                     child: ScrollablePositionedList.builder(
                       itemScrollController: _scrollController,
-                      itemCount: 3,
+                      itemCount: 4,
                       itemBuilder: (context, index) {
                         return [
                           _createSection(
-                              context, _createHome(context, isMobile),
+                              context, HomeSection(isMobile: isMobile),
                               height: SizeConfig.blockSizeVertical * 100),
-                          _createSection(context, _createAbout(context),
+                          _createSection(context, AboutSection(),
                               height: SizeConfig.blockSizeVertical * 100),
                           _createSection(
-                              context, ProjectPage(isMobile: isMobile),
+                              context, ProjectSection(isMobile: isMobile),
                               height: isMobile == false
                                   ? SizeConfig.blockSizeVertical * 150
                                   : SizeConfig.blockSizeVertical * 280),
+                          _createSection(context, ContactSection(),
+                              height: SizeConfig.blockSizeVertical * 100),
                         ][index];
                       },
                     )),
@@ -176,201 +180,3 @@ _createSection(BuildContext context, Widget content, {double height}) {
 //     ),
 //   );
 // }
-
-_createHome(BuildContext context, bool isMobile) {
-  TextStyle headerStyle = TextStyle(
-      color: Colors.white,
-      fontSize: isMobile == false
-          ? SizeConfig.safeBlockHorizontal * 11
-          : SizeConfig.safeBlockHorizontal * 13);
-  TextStyle headerStyle2 = TextStyle(
-      color: GlobalTheme.primaryColor,
-      fontSize: isMobile == false
-          ? SizeConfig.safeBlockHorizontal * 11
-          : SizeConfig.safeBlockHorizontal * 13);
-  TextStyle bodyStyle = TextStyle(
-      color: GlobalTheme.secondaryColor,
-      fontStyle: FontStyle.italic,
-      fontSize: isMobile == false
-          ? SizeConfig.safeBlockHorizontal * 3.8
-          : SizeConfig.safeBlockHorizontal * 5);
-  TextStyle animatedText = TextStyle(
-      color: GlobalTheme.primaryColor,
-      fontStyle: FontStyle.italic,
-      fontSize: isMobile == false
-          ? SizeConfig.safeBlockHorizontal * 3.8
-          : SizeConfig.safeBlockHorizontal * 5);
-  TextStyle barStyle = TextStyle(
-      color: GlobalTheme.secondaryColor,
-      fontWeight: FontWeight.bold,
-      fontSize: isMobile == false
-          ? SizeConfig.safeBlockHorizontal * 3.8
-          : SizeConfig.safeBlockHorizontal * 5);
-
-//This whole thing is confusing and hard to look at
-//There's gotta be an easier way to make this happen with not as ugly code
-  return SizedBox(
-    width: SizeConfig.blockSizeHorizontal * 50,
-    //height: SizeConfig.safeBlockVertical * 80,
-    child: (Stack(
-      alignment: Alignment.center,
-      children: [
-        if (isMobile == false)
-          Row(
-            children: [
-              AutoSizeText.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: "Hi, I'm ", style: headerStyle),
-                    TextSpan(text: "Ricky", style: headerStyle2)
-                  ],
-                ),
-                maxLines: 1,
-              ),
-            ],
-          )
-        else
-          Transform.translate(
-            offset: Offset(0, SizeConfig.safeBlockHorizontal * -7),
-            child: Row(
-              children: [
-                Stack(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Transform.translate(
-                      offset: Offset(SizeConfig.safeBlockHorizontal * -0.5,
-                          SizeConfig.safeBlockHorizontal * -2),
-                      child: AutoSizeText.rich(TextSpan(
-                        children: [
-                          TextSpan(text: "Hi, I'm ", style: headerStyle)
-                        ],
-                      )),
-                    ),
-                    Transform.translate(
-                      offset: Offset(SizeConfig.safeBlockHorizontal * -0.5,
-                          SizeConfig.safeBlockHorizontal * 8),
-                      child: AutoSizeText.rich(TextSpan(
-                        children: [
-                          TextSpan(text: "Ricky", style: headerStyle2)
-                        ],
-                      )),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-        Transform.translate(
-          offset: Offset(
-              isMobile == false ? SizeConfig.safeBlockHorizontal * 0.7 : 2,
-              isMobile == false
-                  ? SizeConfig.safeBlockHorizontal * 7
-                  : SizeConfig.safeBlockHorizontal * 9),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AutoSizeText.rich(
-                  TextSpan(children: [
-                    TextSpan(text: "| ", style: barStyle),
-                    TextSpan(text: "A", style: bodyStyle)
-                  ]),
-                  maxLines: 1),
-              SizedBox(width: SizeConfig.blockSizeHorizontal * 0.8),
-            ],
-          ),
-        ),
-        Transform.translate(
-            offset: Offset(
-                isMobile == false
-                    ? SizeConfig.safeBlockHorizontal * 4.5
-                    : SizeConfig.safeBlockHorizontal * 5.5,
-                isMobile == false
-                    ? SizeConfig.safeBlockHorizontal * 7
-                    : SizeConfig.safeBlockHorizontal * 9),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  //height: SizeConfig.blockSizeVertical * 10,
-                  child: AnimatedTextKit(repeatForever: true, animatedTexts: [
-                    TypewriterAnimatedText(
-                      ' Programmer',
-                      textStyle: animatedText,
-                      //duration: Duration(milliseconds: 2500)
-                    ),
-                    TypewriterAnimatedText(
-                      ' Musician',
-                      textStyle: animatedText,
-                      //duration: Duration(milliseconds: 2500)
-                    ),
-                    TypewriterAnimatedText(
-                      ' Cat Lover',
-                      textStyle: animatedText,
-                      //duration: Duration(milliseconds: 2000)
-                    ),
-                  ]),
-                )
-              ],
-            ))
-      ],
-    )),
-  );
-}
-
-_createAbout(BuildContext context) {
-  TextStyle headerStyle = TextStyle(
-      color: Colors.white, fontSize: SizeConfig.safeBlockHorizontal * 11);
-  TextStyle headerStyle2 = TextStyle(
-      color: GlobalTheme.primaryColor,
-      fontSize: SizeConfig.safeBlockHorizontal * 11);
-  TextStyle bodyStyle = TextStyle(
-      color: GlobalTheme.secondaryColor,
-      fontSize: SizeConfig.safeBlockHorizontal * 7,
-      fontStyle: FontStyle.italic);
-
-  return SizedBox(
-    width: SizeConfig.blockSizeHorizontal * 50,
-    height: SizeConfig.blockSizeVertical * 80,
-    child: (Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        AutoSizeText.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: "About ", style: headerStyle),
-              TextSpan(text: "Me", style: headerStyle2)
-            ],
-            // style: headerStyle,
-          ),
-          maxLines: 1,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: SizedBox(
-              width: SizeConfig.blockSizeHorizontal * 50,
-              child: Divider(thickness: 3, color: GlobalTheme.dividerColor)),
-        ),
-        Expanded(
-          child: AutoSizeText.rich(
-              TextSpan(children: [
-                TextSpan(
-                    text:
-                        "Hi, I'm Ricky, a full-stack software engineer with a passion for creating experiences through programming. In college, I discovered that I loved working on video games. There are so many skills involved and there's just this certain kind of beauty in all of the complexities of it. This love later extended towards creating UIs and in general trying to create a great experience for users. I've found the best use of my skills and creativity to be in front-end development, but I'm not afraid to take on any lower-level back-end work! I've tackled projects using a myriad of languages including C, Ruby, React, Flutter ( my current favorite language), C#, PHP, and more! I certainly consider myself"),
-                TextSpan(
-                    text: ' agile ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: '''and a quick learner. 
-
-
-When I'm not programming, you can find me hanging out with my cat, working on music, or just kicking back and playing some video games. ''')
-              ], style: bodyStyle),
-              minFontSize: 0,
-              stepGranularity: 0.1,
-              wrapWords: true),
-        ),
-      ],
-    )),
-  );
-}
