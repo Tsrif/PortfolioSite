@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:html' as html;
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_site/Utility/Globaltheme.dart';
 import 'package:portfolio_site/Utility/size_config.dart';
@@ -107,17 +108,14 @@ class ContactFormState extends State<ContactForm> {
                       content: Text(
                           "Thanks for reaching out! I will get back to you when I can!")));
 
-                  http.post(
-                    Uri.parse('/'),
-                    headers: <String, String>{
-                      'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: jsonEncode(<String, String>{
+                  FirebaseFirestore.instance
+                      .runTransaction((Transaction transaction) async {
+                    FirebaseFirestore.instance.collection('message').add({
                       'name': nameController.text,
                       'email': emailController.text,
                       'message': messageController.text,
-                    }),
-                  );
+                    });
+                  });
                 }
               },
               child: Text('Submit', style: textStyle),
