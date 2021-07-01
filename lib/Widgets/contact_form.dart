@@ -110,10 +110,11 @@ class ContactFormState extends State<ContactForm> {
 
                   FirebaseFirestore.instance
                       .runTransaction((Transaction transaction) async {
-                    FirebaseFirestore.instance.collection('message').add({
+                    FirebaseFirestore.instance.collection('contact').add({
                       'name': nameController.text,
                       'email': emailController.text,
                       'message': messageController.text,
+                      'time': DateTime.now()
                     });
                   });
                 }
