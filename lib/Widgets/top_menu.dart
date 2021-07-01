@@ -16,52 +16,68 @@ class TopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: SizedBox(
-        height: SizeConfig.blockSizeHorizontal * 18,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedButton(
-              child: AutoSizeText('Home',
-                  textAlign: TextAlign.right,
-                  style:
-                      TextStyle(fontSize: 28, color: GlobalTheme.secondaryColor)),
-              onTap: () {
-                _scrollController.scrollTo(
-                    index: 0,
-                    duration: Duration(milliseconds: 1700),
-                    curve: Curves.bounceIn.flipped);
-              },
-            ),
-            AnimatedButton(
-              child: AutoSizeText('About',
-                  textAlign: TextAlign.right,
-                  style:
-                      TextStyle(fontSize: 28, color: GlobalTheme.secondaryColor)),
-              onTap: () {
-                _scrollController.scrollTo(
-                    index: 1,
-                    duration: Duration(milliseconds: 1700),
-                    curve: Curves.bounceIn.flipped);
-              },
-            ),
-            AnimatedButton(
-              child: AutoSizeText('Projects',
-                  textAlign: TextAlign.right,
-                  wrapWords: false,
-                  style:
-                      TextStyle(fontSize: 25, color: GlobalTheme.secondaryColor)),
-              onTap: () {
-                _scrollController.scrollTo(
-                    index: 2,
-                    duration: Duration(milliseconds: 1700),
-                    curve: Curves.bounceIn.flipped);
-              },
-            ),
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 78),
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: SizedBox(
+          height: SizeConfig.blockSizeHorizontal * 18,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedButton(
+                child: AutoSizeText('Home',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontSize: 28, color: GlobalTheme.secondaryColor)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 0,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+              AnimatedButton(
+                child: AutoSizeText('About',
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontSize: 28, color: GlobalTheme.secondaryColor)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 1,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+              AnimatedButton(
+                child: AutoSizeText('Projects',
+                    textAlign: TextAlign.right,
+                    wrapWords: false,
+                    style: TextStyle(
+                        fontSize: 25, color: GlobalTheme.secondaryColor)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 2,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+              AnimatedButton(
+                child: AutoSizeText('Contact',
+                    textAlign: TextAlign.right,
+                    wrapWords: false,
+                    style: TextStyle(
+                        fontSize: 25, color: GlobalTheme.secondaryColor)),
+                onTap: () {
+                  _scrollController.scrollTo(
+                      index: 3,
+                      duration: Duration(milliseconds: 1700),
+                      curve: Curves.bounceIn.flipped);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
