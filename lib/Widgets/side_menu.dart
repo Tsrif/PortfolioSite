@@ -4,6 +4,7 @@ import 'package:portfolio_site/Utility/Globaltheme.dart';
 import 'package:portfolio_site/Widgets/animated_button.dart';
 import 'package:portfolio_site/Utility/size_config.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'dart:html' as html;
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -91,7 +92,36 @@ class SideMenu extends StatelessWidget {
                         curve: Curves.bounceIn.flipped);
                   },
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: SizeConfig.blockSizeVertical * 20),
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      AnimatedButton(
+                        child: SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: Image.asset(
+                              '/image/Linkedin.png',
+                              color: GlobalTheme.secondaryColor,
+                            )),
+                        onTap: () {
+                          html.window.open(
+                              'https://www.linkedin.com/in/ricky-rivera-0403b4163/',
+                              'new tab');
+                        },
+                      ),
+                      AnimatedButton(
+                        child: SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: Image.asset('/image/GitHub.png',
+                                color: GlobalTheme.secondaryColor)),
+                        onTap: () {
+                          html.window
+                              .open('https://github.com/Tsrif/', 'new tab');
+                        },
+                      ),
+                    ])
               ],
             )
           ],
