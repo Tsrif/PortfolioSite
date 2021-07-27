@@ -108,7 +108,7 @@ class _PortfolioSiteState extends State<PortfolioSite> {
                               context, ProjectSection(isMobile: isMobile),
                               height: isMobile == false
                                   ? SizeConfig.blockSizeVertical * 150
-                                  : SizeConfig.blockSizeVertical * 200),
+                                  : SizeConfig.blockSizeVertical * 300),
                           _createSection(context, ContactSection(isMobile: isMobile),
                               height: SizeConfig.blockSizeVertical * 110),
                         ][index];
